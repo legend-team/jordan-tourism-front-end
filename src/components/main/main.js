@@ -1,12 +1,6 @@
 import React from 'react';
 // import { Route } from 'react-router-dom';
-import {
-    BrowserRouter as Router,
-    Switch,
-    Route,
-    Link,
-    NavLink
-  } from "react-router-dom";
+import {Switch,Route} from "react-router-dom";
 
 import Home from '../home/home.js';
 import AboutJordan from '../about-jordan/about-jordan.js';

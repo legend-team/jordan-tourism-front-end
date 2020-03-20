@@ -12,7 +12,7 @@ import {
 import App from './components/app.js';
 
 
-function Main() {
+function All() {
   return (
     <>
        <Router>
@@ -23,4 +23,4 @@ function Main() {
 }
 
 const entryPoint = document.getElementById('root');
-ReactDOM.render(<Main />, entryPoint);
+ReactDOM.render(<All />, entryPoint);
