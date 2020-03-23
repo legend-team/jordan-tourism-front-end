@@ -1,0 +1,72 @@
+.citiesImg{
+
+    margin-top: 100px;
+    width: 100%;
+    height: 800px;
+}
+
+button{
+    margin-top: 100px;
+    margin-left:50px;
+    margin-bottom: 50px;
+    height: 70px;
+    font-size: xx-large;
+    background-color: darkgrey;
+    // border-radius: 8px
+}
+button:hover{
+    background-color: darkmagenta;
+}
+
+.centered{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    // font-size: 20px;
+    text-align: center;
+    font-family:"Arial Black", Gadget, sans-serif;
+   
+        background: 50% 100% / 50% 50% no-repeat
+                    radial-gradient(ellipse at bottom, rgb(12, 7, 7), transparent, transparent);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        font-size: 80px;
+        font-family: "Source Sans Pro", sans-serif;
+        animation: reveal 3000ms ease-in-out forwards 200ms,
+                   glow 2500ms linear infinite 2000ms;
+      
+        @keyframes reveal {
+          80%{
+            letter-spacing: 8px;
+          }
+          100% {
+            background-size: 300% 300%;
+          }
+        }
+        @keyframes glow {
+          40% {
+            text-shadow: 0 0 8px rgb(14, 9, 9);
+          }
+        }
+}
+.cityImage{
+    margin-right: 10px;
+    margin-left: 40px;
+    margin-bottom: 50px;
+    height: 300px ;
+    width: 350px;
+}
+
+.citiesContainer{
+ text-align: center;
+ float: left;
+
+ .cityName{
+    font-family:"Arial Black", Gadget, sans-serif;
+    font-size: x-large;
+    margin-bottom: 20px;
+
+ }
+}
