@@ -132,7 +132,8 @@ class Cities extends React.Component {
                   <span className="cityName">
                     {city.name}
                   </span>
-                  <a > <Link to={`/${city.name}/${city._id}`}><img src={city.image_url} className="cityImage" /></Link> </a>
+                  <a > <Link to={`/${city.name}/${city._id}`}><img src={city.image_url} className="cityImage" />
+                  </Link> </a>
 
                 </div>
                 {/* <Route exact path={`/${city.name}/${city._id}`}>
@@ -154,4 +155,7 @@ class Cities extends React.Component {
   }
 
 }
+
+
+
 export default Cities;
