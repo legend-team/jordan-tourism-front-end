@@ -1,31 +1,22 @@
-// import React from 'react';
-import { HashLink as Link } from 'react-router-hash-link';
-// import { Switch, Route, Link } from "react-router-dom";
-// import City from '../sities/sites.js'
+import React from 'react';
 
+const reviewsAPI = 'http://localhost:3300/reviews';
 
-import { When } from '../if/if.js';
-import Modal from '../modal/modal.js';
-import './cities.scss'
-
-
-
-
-const citiesAPI = 'http://localhost:3300/cities';
-
-class Cities extends React.Component {
+class Reviews extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      citiesList: [],
-      city: {},
+      reviewsList: [],
+      review: {},
       showDetails: false,
       details: {},
     };
   }
 
   handleInputChange = e => {
-    this.setState({ city: { ...this.state.city, [e.target.name]: e.target.value } });
+    this.setState({ review: { ...this.state.review, [e.target.name]: e.target.value } });
+    console.log('oooooo', this.state.review);
+    
   };
 
   callAPI = (url, method = 'get', body, handler, errorHandler) => {
@@ -42,112 +33,119 @@ class Cities extends React.Component {
       .catch((e) => typeof errorHandler === 'function' ? errorHandler(e) : console.error(e));
   };
 
-  addcity = (e) => {
+  addreview = (e) => {
 
     e.preventDefault();
     e.target.reset();
 
-    const _updateState = newcity =>
+    const _updateState = newreview =>
       this.setState({
-        citiesList: [...this.state.citiesList, newcity],
+        reviewsList: [...this.state.reviewsList, newreview],
       });
 
-    this.callAPI(citiesAPI, 'POST', this.state.city, _updateState);
+    this.callAPI(reviewsAPI, 'POST', this.state.review, _updateState);
 
   };
 
-  deletecity = id => {
+  deletereview = id => {
 
     const _updateState = (results) =>
       this.setState({
-        citiesList: this.state.citiesList.filter(city => city._id !== id),
+        reviewsList: this.state.reviewsList.filter(review => review._id !== id),
       });
 
-    this.callAPI(`${citiesAPI}/${id}`, 'DELETE', undefined, _updateState);
+    this.callAPI(`${reviewsAPI}/${id}`, 'DELETE', undefined, _updateState);
 
   };
 
-  savecity = updatedcity => {
+  savereview = updatedreview => {
 
-    const _updateState = (newcity) =>
+    const _updateState = (newreview) =>
       this.setState({
-        citiesList: this.state.citiesList.map(city =>
-          city._id === newcity._id ? newcity : city,
+        reviewsList: this.state.reviewsList.map(review =>
+          review._id === newreview._id ? newreview : review,
         ),
       });
 
-    this.callAPI(`${citiesAPI}/${updatedcity.id}`, 'PUT', updatedcity, _updateState);
+    this.callAPI(`${reviewsAPI}/${updatedreview.id}`, 'PUT', updatedreview, _updateState);
 
   };
 
   toggleComplete = id => {
-    let city = this.state.citiesList.filter(i => i._id === id)[0] || {};
-    if (city._id) {
-      city.complete = !city.complete;
-      this.savecity(city);
+    let review = this.state.reviewsList.filter(i => i._id === id)[0] || {};
+    if (review._id) {
+      review.complete = !review.complete;
+      this.savereview(review);
     }
   };
 
   toggleDetails = id => {
     let showDetails = !this.state.showDetails;
-    let details = this.state.citiesList.filter(city => city._id === id)[0] || {};
+    let details = this.state.reviewsList.filter(review => review._id === id)[0] || {};
     this.setState({ details, showDetails });
   }
 
-  getcitiescitys = () => {
-    const _updateState = data => this.setState({ citiesList: data });
-    this.callAPI(citiesAPI, 'GET', undefined, _updateState);
+  getreviewsreviews = () => {
+    const _updateState = data => this.setState({ reviewsList: data });
+    this.callAPI(reviewsAPI, 'GET', undefined, _updateState);
   };
 
   componentDidMount = () => {
-    this.getcitiescitys();
+    this.getreviewsreviews();
   }
-  //href={`${citiesAPI}/${city.name}/${city._id}`}
+  //href={`${reviewsAPI}/${review.name}/${review._id}`}
   render() {
     return (
       <>
-        <img className="citiesImg" src='https://d3qvqlc701gzhm.cloudfront.net/full/a1609720c3bbae592b1303dcdde74d94fd4bcd4bae1e3372428d11bc110b8a87.jpg' />
-        <div className="centered">JORDAN CITIES</div>
-        <div className='container'>
-
-          <div className="about">PEOPLE OF JORDAN</div>
-          <div className="hometext">
-            Jordan can be regarded as a typically Arab country for its people are very warm, friendly and hospitable. Jordanians are typically happy to forgive foreigners who break the rules of etiquette. However, visitors seen to be making an effort to observe local customs will undoubtedly win favour.
-
-            Joining local people for a cup of tea or coffee can be a wonderful way to learn more about local culture. If you are invited yet are unable to attend, then it is perfectly acceptable to decline. Place your right hand over your heart and politely make your excuses.
-    </div>
-        </div>
 
 
-        <div className="citiesContainer">
+
+        <div className="reviewsContainer">
           <ul>
-            {this.state.citiesList.map(city => (
-              <li className="citiesContainer"
+          
+            {console.log('dddddddddd', this.state.reviewsList)}
+            {this.state.reviewsList.map(review => (
+              <li className="reviewsContainer"
                 id="model"
-                // className={`complete-${city.complete.toString()}`}
-                key={city._id}>
+                // className={`complete-${review.complete.toString()}`}
+                key={review._id}>
 
-                {/* {console.log('fffffffffff', city)} */}
-                <div className="citiesContainer">
-
-                  <span className="cityName">
-                    {city.name}
-                  </span>
-                  <a > <Link to={`/sites/#${city.name}`}><img src={city.image_url} className="cityImage" />
-                  </Link> </a>
-
+                <div className="centered">JORDAN reviews</div>
+                <div className='container'>
+                  <div className="about">{review.siteName}</div>
+                  <div className="hometext">{review.review}  </div>
                 </div>
-                {/* <Route exact path={`/${city.name}/${city._id}`}>
-                  <City />
-                </Route> */}
-
-
+                <button onClick={() => this.deletereview(review._id)}>
+                    Delete
+                  </button>
+            
               </li>
             ))}
           </ul>
         </div>
 
-   
+
+        <div>
+            <h3>Add Item</h3>
+            <form onSubmit={this.addreview}>
+              <label>
+                <span>Site Name</span>
+                <input
+                type='text'
+                  name="siteName"
+                  placeholder="Add The Site Name"
+                  onChange={this.handleInputChange}
+                />
+              </label>
+            
+              <label>
+                <span>Review</span>
+                <input type="text" name="review" placeholder="review" onChange={this.handleInputChange} />
+              </label>
+           
+              <button id="add">Add Item</button>
+            </form>
+          </div>
 
 
 
@@ -156,7 +154,5 @@ class Cities extends React.Component {
   }
 
 }
+export default Reviews
 
-
-
-export default Cities;
