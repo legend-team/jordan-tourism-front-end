@@ -114,8 +114,8 @@ class City extends React.Component {
                   {console.log('dddddddddd', city.achistoricalPlaces)}
 
                 <img className="citiesImg" src={city.image_url} />
-                <div className="centered">{city.name}</div>
-                <div className='container'>
+                <div className="centered">JORDAN CITIES</div>
+                <div className='container' id={city.name}>
                   <div className="about">{city.name}</div>
                   <div className="hometext">{city.description}  </div>
                 </div>

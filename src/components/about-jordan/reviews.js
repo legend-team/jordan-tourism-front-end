@@ -1,25 +1,31 @@
-import React from 'react';
-
+// import React from 'react';
+import { HashLink as Link } from 'react-router-hash-link';
+// import { Switch, Route, Link } from "react-router-dom";
+// import City from '../sities/sites.js'
 
 
 import { When } from '../if/if.js';
 import Modal from '../modal/modal.js';
+import './cities.scss'
 
-const sitesAPI = 'http://localhost:3300/sites';
 
-class Sites extends React.Component {
+
+
+const citiesAPI = 'http://localhost:3300/cities';
+
+class Cities extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      sitesList: [],
-      site: {},
+      citiesList: [],
+      city: {},
       showDetails: false,
       details: {},
     };
   }
 
   handleInputChange = e => {
-    this.setState({ site: { ...this.state.site, [e.target.name]: e.target.value } });
+    this.setState({ city: { ...this.state.city, [e.target.name]: e.target.value } });
   };
 
   callAPI = (url, method = 'get', body, handler, errorHandler) => {
@@ -36,121 +42,112 @@ class Sites extends React.Component {
       .catch((e) => typeof errorHandler === 'function' ? errorHandler(e) : console.error(e));
   };
 
-  addsite = (e) => {
+  addcity = (e) => {
 
     e.preventDefault();
     e.target.reset();
 
-    const _updateState = newsite =>
+    const _updateState = newcity =>
       this.setState({
-        sitesList: [...this.state.sitesList, newsite],
+        citiesList: [...this.state.citiesList, newcity],
       });
 
-    this.callAPI(sitesAPI, 'POST', this.state.site, _updateState);
+    this.callAPI(citiesAPI, 'POST', this.state.city, _updateState);
 
   };
 
-  deletesite = id => {
+  deletecity = id => {
 
     const _updateState = (results) =>
       this.setState({
-        sitesList: this.state.sitesList.filter(site => site._id !== id),
+        citiesList: this.state.citiesList.filter(city => city._id !== id),
       });
 
-    this.callAPI(`${sitesAPI}/${id}`, 'DELETE', undefined, _updateState);
+    this.callAPI(`${citiesAPI}/${id}`, 'DELETE', undefined, _updateState);
 
   };
 
-  savesite = updatedsite => {
+  savecity = updatedcity => {
 
-    const _updateState = (newsite) =>
+    const _updateState = (newcity) =>
       this.setState({
-        sitesList: this.state.sitesList.map(site =>
-          site._id === newsite._id ? newsite : site,
+        citiesList: this.state.citiesList.map(city =>
+          city._id === newcity._id ? newcity : city,
         ),
       });
 
-    this.callAPI(`${sitesAPI}/${updatedsite.id}`, 'PUT', updatedsite, _updateState);
+    this.callAPI(`${citiesAPI}/${updatedcity.id}`, 'PUT', updatedcity, _updateState);
 
   };
 
   toggleComplete = id => {
-    let site = this.state.sitesList.filter(i => i._id === id)[0] || {};
-    if (site._id) {
-      site.complete = !site.complete;
-      this.savesite(site);
+    let city = this.state.citiesList.filter(i => i._id === id)[0] || {};
+    if (city._id) {
+      city.complete = !city.complete;
+      this.savecity(city);
     }
   };
 
   toggleDetails = id => {
     let showDetails = !this.state.showDetails;
-    let details = this.state.sitesList.filter(site => site._id === id)[0] || {};
+    let details = this.state.citiesList.filter(city => city._id === id)[0] || {};
     this.setState({ details, showDetails });
   }
 
-  getsitessites = () => {
-    const _updateState = data => this.setState({ sitesList: data });
-    this.callAPI(sitesAPI, 'GET', undefined, _updateState);
+  getcitiescitys = () => {
+    const _updateState = data => this.setState({ citiesList: data });
+    this.callAPI(citiesAPI, 'GET', undefined, _updateState);
   };
 
   componentDidMount = () => {
-    this.getsitessites();
+    this.getcitiescitys();
   }
-  //href={`${sitesAPI}/${site.name}/${site._id}`}
+  //href={`${citiesAPI}/${city.name}/${city._id}`}
   render() {
     return (
       <>
+        <img className="citiesImg" src='https://d3qvqlc701gzhm.cloudfront.net/full/a1609720c3bbae592b1303dcdde74d94fd4bcd4bae1e3372428d11bc110b8a87.jpg' />
+        <div className="centered">JORDAN CITIES</div>
+        <div className='container'>
+
+          <div className="about">PEOPLE OF JORDAN</div>
+          <div className="hometext">
+            Jordan can be regarded as a typically Arab country for its people are very warm, friendly and hospitable. Jordanians are typically happy to forgive foreigners who break the rules of etiquette. However, visitors seen to be making an effort to observe local customs will undoubtedly win favour.
+
+            Joining local people for a cup of tea or coffee can be a wonderful way to learn more about local culture. If you are invited yet are unable to attend, then it is perfectly acceptable to decline. Place your right hand over your heart and politely make your excuses.
+    </div>
+        </div>
 
 
-
-        <div className="sitesContainer">
+        <div className="citiesContainer">
           <ul>
-            {this.state.sitesList.map(site => (
-              <li className="sitesContainer"
+            {this.state.citiesList.map(city => (
+              <li className="citiesContainer"
                 id="model"
-                // className={`complete-${site.complete.toString()}`}
-                key={site._id}>
-                  {/* {console.log('dddddddddd', site.achistoricalPlaces)} */}
+                // className={`complete-${city.complete.toString()}`}
+                key={city._id}>
 
-                <img className="sitesImg" src={site.image_link} />
-                <div className="centered">{site.historical_name}</div>
-                <div className='container'>
-                  <div className="about">{site.historical_name}</div>
-                  <div className="hometext">{site.brief_info}  </div>
+                {/* {console.log('fffffffffff', city)} */}
+                <div className="citiesContainer">
+
+                  <span className="cityName">
+                    {city.name}
+                  </span>
+                  <a > <Link to={`/sites/#${city.name}`}><img src={city.image_url} className="cityImage" />
+                  </Link> </a>
+
                 </div>
-                <ul>
+                {/* <Route exact path={`/${city.name}/${city._id}`}>
+                  <City />
+                </Route> */}
 
-                {site.reviews.map(review => (
-                  <li key={review._id}>
-                    <div>{review.review}</div>
-                    <button onClick={() => this.deletesite(review._id)}>
-                    Delete
-                  </button>
-         
 
-                  </li>
-                ))}
-
-                </ul>
               </li>
             ))}
           </ul>
         </div>
 
-        <div>
-            <h3>Add Review</h3>
-            <form onSubmit={this.addsite}>
-              <label>
-                <input
-                  name="text"
-                  placeholder="Add a Review"
-                  onChange={this.handleInputChange}
-                />
-              </label>
-             
-              <button id="add">Add Review</button>
-            </form>
-          </div>
+   
 
 
 
@@ -159,5 +156,7 @@ class Sites extends React.Component {
   }
 
 }
-export default Sites
 
+
+
+export default Cities;

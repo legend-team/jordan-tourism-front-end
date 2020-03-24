@@ -1,5 +1,6 @@
 import React from 'react';
-import { Switch, Route, Link } from "react-router-dom";
+import { HashLink as Link } from 'react-router-hash-link';
+// import { Switch, Route, Link } from "react-router-dom";
 // import City from '../sities/sites.js'
 
 
@@ -132,7 +133,7 @@ class Cities extends React.Component {
                   <span className="cityName">
                     {city.name}
                   </span>
-                  <a > <Link to={`/${city.name}/${city._id}`}><img src={city.image_url} className="cityImage" />
+                  <a > <Link to={`/sites/#${city.name}`}><img src={city.image_url} className="cityImage" />
                   </Link> </a>
 
                 </div>
