@@ -102,7 +102,9 @@ function Gallary() {
       if (!error) {
         console.log(photos);
         if(photos.event === 'success'){
-          setImages([...images, photos.info.public_id])
+          
+          setImages([...images, photos.info.url])
+          console.log('mmmmmmmmmm', photos.info.url);
         }
       } else {
         console.log(error);
@@ -118,14 +120,15 @@ function Gallary() {
    <CloudinaryContext cloudName="dus3du5fr">
       <div className="App">
         <button onClick={() => beginUpload("image")}>Upload Image</button>
-      <section>
+      {/* <section>
+        {console.log('gggggggggggg', images)}
         {images.map(i => <Image
               key={i}
               publicId={i}
               fetch-format="auto"
               quality="auto"
             />)}
-      </section>
+      </section> */}
     </div>
    </CloudinaryContext>
   );

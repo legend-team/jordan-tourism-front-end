@@ -1,5 +1,5 @@
 import React from 'react';
-
+import Gallery from '../gallary/gallary.js'
 const reviewsAPI = 'http://localhost:3300/reviews';
 
 class Reviews extends React.Component {
@@ -127,6 +127,7 @@ class Reviews extends React.Component {
 
         <div>
             <h3>Add Item</h3>
+            <Gallery/>
             <form onSubmit={this.addreview}>
               <label>
                 <span>Site Name</span>
@@ -142,7 +143,10 @@ class Reviews extends React.Component {
                 <span>Review</span>
                 <input type="text" name="review" placeholder="review" onChange={this.handleInputChange} />
               </label>
-           
+              {/* <label>
+               
+                <input type="hidden" name="review" placeholder="review" onChange={this.handleInputChange} value={} />
+              </label> */}
               <button id="add">Add Item</button>
             </form>
           </div>
