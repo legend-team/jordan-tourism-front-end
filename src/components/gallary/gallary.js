@@ -116,11 +116,23 @@ function Gallary() {
     fetchPhotos("image", setImages);
   }, [])
 
+  useEffect(() => {
+    const data = localStorage.getItem("image_storage");
+    if (data) {
+         console.log('parseddata',JSON.parse(data));
+         setImages(JSON.parse(data))
+    }
+  }, []);
+  //
+  useEffect(() => {
+    localStorage.setItem("image_storage", JSON.stringify(images));
+  });
+
   return (
    <CloudinaryContext cloudName="dus3du5fr">
       <div className="App">
         <button onClick={() => beginUpload("image")}>Upload Image</button>
-      {/* <section>
+      <section>
         {console.log('gggggggggggg', images)}
         {images.map(i => <Image
               key={i}
@@ -128,7 +140,7 @@ function Gallary() {
               fetch-format="auto"
               quality="auto"
             />)}
-      </section> */}
+      </section>
     </div>
    </CloudinaryContext>
   );

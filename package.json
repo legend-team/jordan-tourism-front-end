@@ -25,14 +25,12 @@
     "superagent": "^5.2.2"
   },
   "devDependencies": {},
-
-
   "author": "Saja and Muna",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/legend-team/jordan-tourism-front-end/issues"
   },
-  "homepage": "https://github.com/legend-team/jordan-tourism-front-end/",
+  "homepage": "/",
   "browserslist": {
     "production": [
       ">0.2%",
