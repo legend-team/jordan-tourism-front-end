@@ -1,7 +1,7 @@
 import React, { Component ,useContext} from 'react';
 import { Link } from 'react-router-dom';
 import {LoginContext} from './../context.js'
-import { JsonWebTokenError } from 'jsonwebtoken';
+
 
 const If = props => {
   return props.condition ? props.children : null;
@@ -34,7 +34,8 @@ class SignInForm extends Component {
     handleSubmit(e) {
         e.preventDefault();
         console.log('mmmm',this.context)
-        this.context.login(this.state.username,this.state.password);        // e.target.reset();
+        this.context.login(this.state.username,this.state.password);        
+        // e.target.reset();
         console.log('The form was submitted with the following data:');
         console.log(this.state);
     }

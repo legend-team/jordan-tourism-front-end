@@ -11,7 +11,7 @@ import ContactUs from '../contact-us/contact-us';
 import AboutUs from '../about-us/about-us.js';
 import Cities from '../cities/cities.js';
 import Signin from "../sign-in/sign.js";
-import {LoginContext} from './../sign-in/context' 
+import {LoginContext} from './../sign-in/context.js' 
 
 // const citiesAPI = 'http://localhost:3300/cities';
 
@@ -19,12 +19,12 @@ const If = props => {
   return props.condition ? props.children : null;
 }
 function Main(){
+ 
   const Usestate =  useContext(LoginContext)
   console.log('*********************8',Usestate.loggedIn)
   return (
     <main>
-
-      
+      <Switch>
         <Route exact path="/">
           <Home />
         </Route>
@@ -54,8 +54,7 @@ function Main(){
         <Route path="/signin">
           <Signin/>
         </Route>
-
-
+        </Switch>
     </main>
   )
 }

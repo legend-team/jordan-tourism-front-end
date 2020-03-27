@@ -14,8 +14,10 @@
   "dependencies": {
     "cloudinary-core": "^2.8.1",
     "cloudinary-react": "^1.3.4",
+    "jsonwebtoken": "^8.5.1",
     "node": "^13.11.0",
     "react": "^16.13.1",
+    "react-cookies": "^0.1.1",
     "react-dom": "^16.13.1",
     "react-dropzone": "^10.2.1",
     "react-router-dom": "^5.1.2",
@@ -25,8 +27,6 @@
     "superagent": "^5.2.2"
   },
   "devDependencies": {},
-
-
   "author": "Saja and Muna",
   "license": "ISC",
   "bugs": {
