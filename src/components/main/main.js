@@ -1,6 +1,6 @@
-import React from 'react';
+import React,{useContext} from 'react';
 // import { Route } from 'react-router-dom';
-import { Switch, Route } from "react-router-dom";
+import { Switch, Route, Router } from "react-router-dom";
 import './main.scss'
 
 import Home from '../home/home.js';
@@ -10,13 +10,56 @@ import Sites from '../sities/sites.js';
 import ContactUs from '../contact-us/contact-us';
 import AboutUs from '../about-us/about-us.js';
 import Cities from '../cities/cities.js';
-
-
+import Signin from "../sign-in/sign.js";
+import {LoginContext} from './../sign-in/context' 
 
 // const citiesAPI = 'http://localhost:3300/cities';
 
-class Main extends React.Component {
+const If = props => {
+  return props.condition ? props.children : null;
+}
+function Main(){
+  const Usestate =  useContext(LoginContext)
+  console.log('*********************8',Usestate.loggedIn)
+  return (
+    <main>
 
+      
+        <Route exact path="/">
+          <Home />
+        </Route>
+        <Route path="/aboutjordan">
+        <If condition={Usestate.loggedIn}>
+          <AboutJordan />
+        </If>
+        <If condition={!Usestate.loggedIn}>
+          <Signin/>
+        </If>
+        </Route>
+        <Route path="/gallary">
+          <Gallary />
+        </Route>
+        <Route path="/cities">
+          <Cities />
+        </Route>
+        <Route path='/sites'>
+          <Sites />
+        </Route>
+        <Route path="/contactus">
+          <ContactUs />
+        </Route>
+        <Route path="/aboutus">
+          <AboutUs />
+        </Route>
+        <Route path="/signin">
+          <Signin/>
+        </Route>
+
+
+    </main>
+  )
+}
+  
   // constructor(props) {
   //   super(props);
   //   this.state = {
@@ -46,39 +89,39 @@ class Main extends React.Component {
   // };
 
 
+//     return (
+//       <main>
 
-  render() {
-    return (
-      <main>
+//         <Switch>
+//           <Route exact path="/">
+//             <Home />
+//           </Route>
+//           <Route path="/aboutjordan">
+//             <AboutJordan />
+//           </Route>
+//           <Route path="/gallary">
+//             <Gallary />
+//           </Route>
+//           <Route path="/cities">
+//             <Cities />
+//           </Route>
+//           <Route path='/sites'>
+//             <Sites />
+//           </Route>
+//           <Route path="/contactus">
+//             <ContactUs />
+//           </Route>
+//           <Route path="/aboutus">
+//             <AboutUs />
+//           </Route>
+//           <Route path="/signin">
+//             <Signin/>
+//           </Route>
+//         </Switch>
 
-        <Switch>
-          <Route exact path="/">
-            <Home />
-          </Route>
-          <Route path="/aboutjordan">
-            <AboutJordan />
-          </Route>
-          <Route path="/gallary">
-            <Gallary />
-          </Route>
-          <Route path="/cities">
-            <Cities />
-          </Route>
-          <Route path='/sites'>
-            <Sites />
-          </Route>
-          <Route path="/contactus">
-            <ContactUs />
-          </Route>
-          <Route path="/aboutus">
-            <AboutUs />
-          </Route>
-        </Switch>
 
-
-      </main>
-    )
-  }
-}
+//       </main>
+//     )
+// }
 
 export default Main;
