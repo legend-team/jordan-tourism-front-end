@@ -7,7 +7,7 @@ import './cities.scss'
 function Cities(props) {
   const handleSubmit = async e => {
     e.preventDefault();
-    const raw = await fetch("http://localhost:3300/cities");
+    const raw = await fetch("http://localhost:3000/cities");
     console.log('iiiiiiiiii', raw);
 
     const data = await raw.json();
