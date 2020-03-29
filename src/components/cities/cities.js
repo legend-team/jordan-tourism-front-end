@@ -11,7 +11,7 @@ import './cities.scss'
 
 
 
-const citiesAPI = 'http://localhost:3300/cities';
+const citiesAPI = 'http://tourism-api-back-end.herokuapp.com/cities';
 
 class Cities extends React.Component {
   constructor(props) {
@@ -133,7 +133,7 @@ class Cities extends React.Component {
                   <span className="cityName">
                     {city.name}
                   </span>
-                  <a > <Link to={`/sites/#${city.name}`}><img src={city.image_url} className="cityImage" />
+                  <a > <Link to={`/sites/${city.name}/${city.histori}`}><img src={city.image_url} className="cityImage" />
                   </Link> </a>
 
                 </div>

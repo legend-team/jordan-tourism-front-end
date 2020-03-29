@@ -1,12 +1,12 @@
 import React from 'react';
 
 import { Switch, Route, Link } from "react-router-dom";
+// import Reviews from '../about-jordan/reviews.js'
 
+// import { When } from '../if/if.js';
+// import Modal from '../modal/modal.js';
 
-import { When } from '../if/if.js';
-import Modal from '../modal/modal.js';
-
-const citiesAPI = 'http://localhost:3300/cities';
+const citiesAPI = 'http://tourism-api-back-end.herokuapp.com/cities';
 
 class City extends React.Component {
   constructor(props) {
@@ -125,8 +125,8 @@ class City extends React.Component {
                   <li key={site._id}>
                     <div>{site.historical_name}</div>
                 <div>{site.brief_info}</div>
-                <Link to={`/${city.name}/${city._id}/${site.historical_name}/${site._id}`}><img src={site.image_link}/></Link>
-
+                <Link to={`/cities/${city.name}/${city._id}/${site.historical_name}/${site._id}`}><img src={site.image_link}/></Link>
+{/* <Reviews/> */}
                   </li>
                 ))}
 

@@ -19,7 +19,7 @@ const Header = props => {
           <a>   <Link to="/signin">signin</Link></a>
           </li>
           <li className="nav">
-          <a>  <Link to="/aboutjordan">About Jordan</Link></a>
+          <a>  <Link to="/aboutjordan">Review</Link></a>
           </li>
           <li className="nav">
            <a> <Link to="/gallary"> Gallary</Link></a>

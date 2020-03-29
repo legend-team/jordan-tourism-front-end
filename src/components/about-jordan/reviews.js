@@ -1,6 +1,7 @@
 import React from 'react';
 import Gallery from '../gallary/gallary.js'
-const reviewsAPI = 'http://localhost:3300/reviews';
+// const reviewsAPI = 'http://localhost:3300/reviews';
+const reviewsAPI = 'http://tourism-api-back-end.herokuapp.com/reviews'
 
 class Reviews extends React.Component {
   constructor(props) {

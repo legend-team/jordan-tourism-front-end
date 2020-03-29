@@ -19,7 +19,7 @@
 import React from "react";
 
 function City(props) {
-  const API = `http://localhost:3300/cities/amman/${props.city.id}`
+  const API = `http://tourism-api-back-end.herokuapp.com/cities/amman/${props.city.id}`
   return (
     <li>
       <a href={API} > <img src={props.city.url}/> </a>
