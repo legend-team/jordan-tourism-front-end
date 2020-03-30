@@ -1,11 +1,10 @@
 import React from 'react';
-import Gallery from '../gallary/gallary.js'
-// const reviewsAPI = 'http://localhost:3300/reviews';
 import OneReview from './onereviewe.js'
+import Onesite from '../onesite/onesite.js'
+
 const reviewsAPI = 'http://tourism-api-back-end.herokuapp.com/reviews'
 
 const If = props => {
-  // console.log('propsinsis',props)
   return props.condition ? props.children : null;
 }
 class Reviews extends React.Component {
@@ -131,12 +130,12 @@ if (review!==b){return false}   }
             {/* <Gallery/> */}
             <form onSubmit={this.addreview}>
               <label>
-                <span>Site Name</span>
+                
                 <input
-                type='text'
+                type='hidden'
                   name="siteName"
-                  placeholder="Add The Site Name"
                   onChange={this.handleInputChange}
+                  // value={site.historical_name}
                 />
               </label>
             
@@ -144,11 +143,8 @@ if (review!==b){return false}   }
                 <span>Review</span>
                 <input type="text" name="review" placeholder="review" onChange={this.handleInputChange} />
               </label>
-              {/* <label>
-               
-                <input type="hidden" name="review" placeholder="review" onChange={this.handleInputChange} value={} />
-              </label> */}
-              <button id="add">Add Item</button>
+          
+              <button id="add">Add Review</button>
             </form>
           </div>
 

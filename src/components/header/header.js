@@ -16,20 +16,16 @@ const Header = props => {
          <a>   <Link to="/">Home</Link></a>
           </li>
           <li className="nav">
-          <a>   <Link to="/signin">signin</Link></a>
-          </li>
-          <li className="nav">
-          <a>  <Link to="/aboutjordan">Review</Link></a>
-          </li>
-          <li className="nav">
-           <a> <Link to="/gallary"> Gallary</Link></a>
-          </li >
-          <li className="nav">
            <a> <Link to="/cities"> Jordan Cities </Link></a>
           </li>
           <li className="nav">
            <a> <Link to="/sites"> Places To Visit </Link></a>
           </li>
+          <li className="nav">
+          <a>   <Link to="/signin">signin</Link></a>
+          </li>
+        
+     
         </ul>
       </nav>
       <a href="#" className="fa fa-twitter"></a>

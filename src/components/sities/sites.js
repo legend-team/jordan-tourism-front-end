@@ -1,4 +1,7 @@
 import React from 'react';
+import { HashLink as Link } from 'react-router-hash-link';
+
+
 
 // import { Switch, Route, Link } from "react-router-dom";
 // import Reviews from '../about-jordan/reviews.js'
@@ -8,7 +11,7 @@ import Onesite from '../onesite/onesite.js'
 
 const citiesAPI = 'http://tourism-api-back-end.herokuapp.com/cities';
 const sitesAPI = 'http://tourism-api-back-end.herokuapp.com/sites';
-    
+
 
 const If = props => {
   return props.condition ? props.children : null;
@@ -19,7 +22,7 @@ class City extends React.Component {
     this.state = {
       citiesList: [],
       city: {},
-      site:[],
+      site: [],
       showDetails: false,
       details: {},
     };
@@ -52,8 +55,8 @@ class City extends React.Component {
     const _updateState = newcity =>
       this.setState({
         citiesList: [...this.state.citiesList, newcity]
-        
-     
+
+
       });
 
     this.callAPI(citiesAPI, 'POST', this.state.city, _updateState);
@@ -65,7 +68,7 @@ class City extends React.Component {
     const _updateState = (results) =>
       this.setState({
         citiesList: this.state.citiesList.filter(city => city._id !== id)
-        
+
       });
 
     this.callAPI(`${citiesAPI}/${id}`, 'DELETE', undefined, _updateState);
@@ -104,7 +107,7 @@ class City extends React.Component {
     this.callAPI(citiesAPI, 'GET', undefined, _updateState);
   };
   getsitescitys = () => {
-    const  _updateSiteState = data => this.setState({ site: data });
+    const _updateSiteState = data => this.setState({ site: data });
     this.callAPI(sitesAPI, 'GET', undefined, _updateSiteState);
     console.log('fffffffffff', this.state.site)
   };
@@ -113,56 +116,57 @@ class City extends React.Component {
     this.getcitiescitys();
     this.getsitescitys();
   }
- 
+
 
   //href={`${citiesAPI}/${city.name}/${city._id}`}
   render() {
     return (
       <div className="citiesContainer">
-         {this.state.citiesList.map(city => (
+        {this.state.citiesList.map(city => (
           <ul>
             <li className="citiesContainer"
-                id="model"
-                // className={`complete-${city.complete.toString()}`}
-                key={city._id} cityN={city.name}>
-                  {/* <img className="citiesImg" src={city.image_url} /> */}
-                  <div className="centered">JORDAN CITIES</div>
-                  <div className='container' id={city.name}>
-                    <div className="about">{city.name}</div>
-                    <div className="hometext">{city.description}</div>
+              id="model"
+              // className={`complete-${city.complete.toString()}`}
+              key={city._id} cityN={city.name}>
+              {/* <img className="citiesImg" src={city.image_url} /> */}
+              <div className='container' id={city.name}>
+                <div className="about">{city.name}</div>
+                <div className="hometext">{city.description}</div>
+              </div>
+            </li>
+            <ul>
+              {city.achistoricalPlaces.map(site => (
+
+                //  console.log('inside return', site.reviews)
+                  <div>
+
+                  <If condition={!this.props.loggedIn}><Link to='/signin'><button>Log In To Add Review</button> </Link></If>
+                <If condition={site.cityName}>
+                  <Onesite
+                    keysite={site._id}
+                    historical_name={site.historical_name}
+                    brief={site.brief_info}
+                    // img={site.image_link}
+                    loggedIn={this.props.loggedIn}
+                    reviews={site.reviews}
+                    />
+                </If>
                     </div>
-                </li>
-          <ul>
-          {city.achistoricalPlaces.map(site => (
 
-          //  console.log('inside return', site.reviews)
-         
-          <If condition={site.cityName}>
-          <Onesite
-          keysite = {site._id}
-          historical_name = {site.historical_name}
-          brief = {site.brief_info}
-          img = {site.image_link}
-          loggedIn ={this.props.loggedIn}
-          reviews = {site.reviews}
+              ))}
 
 
-          />
-    </If>
-               
-          ))}
-          
-           
 
+            </ul>
           </ul>
-        </ul>
-    
-    ))}
 
-    </div>
+        ))}
+
+      </div>
     )
-      
-}}
+
+  }
+}
 export default City;
 
 

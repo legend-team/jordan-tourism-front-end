@@ -11,7 +11,7 @@ import './cities.scss'
 
 
 
-const citiesAPI = 'http://localhost:3300/cities';
+const citiesAPI = 'http://tourism-api-back-end.herokuapp.com/cities'
 
 class Cities extends React.Component {
   constructor(props) {
