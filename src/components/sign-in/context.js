@@ -19,6 +19,7 @@ class LoginProvider extends React.Component{
             setlogin:this.setlogin,
             setState:this.setState,
             user:{}
+            
         }
         
     }
@@ -58,7 +59,7 @@ class LoginProvider extends React.Component{
         const qs = new URLSearchParams(window.location.search)
         const cookiesToken = cookies.load('auth')
         const token  = qs.get('token') || cookiesToken || null
-        this.valdiateToken(token)
+        this.valdiateToken(`token`)
     }
     signUp = async(username,password,email_user)=>{
         console.log('Hi')

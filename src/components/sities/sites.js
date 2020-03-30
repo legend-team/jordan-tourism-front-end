@@ -1,19 +1,25 @@
 import React from 'react';
 
-import { Switch, Route, Link } from "react-router-dom";
+// import { Switch, Route, Link } from "react-router-dom";
 // import Reviews from '../about-jordan/reviews.js'
-
+import Onesite from '../onesite/onesite.js'
 // import { When } from '../if/if.js';
 // import Modal from '../modal/modal.js';
 
 const citiesAPI = 'http://tourism-api-back-end.herokuapp.com/cities';
+const sitesAPI = 'http://tourism-api-back-end.herokuapp.com/sites';
+    
 
+const If = props => {
+  return props.condition ? props.children : null;
+}
 class City extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       citiesList: [],
       city: {},
+      site:[],
       showDetails: false,
       details: {},
     };
@@ -21,6 +27,7 @@ class City extends React.Component {
 
   handleInputChange = e => {
     this.setState({ city: { ...this.state.city, [e.target.name]: e.target.value } });
+    this.setState({ site: { ...this.state.site, [e.target.name]: e.target.value } });
   };
 
   callAPI = (url, method = 'get', body, handler, errorHandler) => {
@@ -44,7 +51,9 @@ class City extends React.Component {
 
     const _updateState = newcity =>
       this.setState({
-        citiesList: [...this.state.citiesList, newcity],
+        citiesList: [...this.state.citiesList, newcity]
+        
+     
       });
 
     this.callAPI(citiesAPI, 'POST', this.state.city, _updateState);
@@ -55,7 +64,8 @@ class City extends React.Component {
 
     const _updateState = (results) =>
       this.setState({
-        citiesList: this.state.citiesList.filter(city => city._id !== id),
+        citiesList: this.state.citiesList.filter(city => city._id !== id)
+        
       });
 
     this.callAPI(`${citiesAPI}/${id}`, 'DELETE', undefined, _updateState);
@@ -93,55 +103,66 @@ class City extends React.Component {
     const _updateState = data => this.setState({ citiesList: data });
     this.callAPI(citiesAPI, 'GET', undefined, _updateState);
   };
+  getsitescitys = () => {
+    const  _updateSiteState = data => this.setState({ site: data });
+    this.callAPI(sitesAPI, 'GET', undefined, _updateSiteState);
+    console.log('fffffffffff', this.state.site)
+  };
 
   componentDidMount = () => {
     this.getcitiescitys();
+    this.getsitescitys();
   }
+ 
+
   //href={`${citiesAPI}/${city.name}/${city._id}`}
   render() {
     return (
-      <>
-
-
-
-        <div className="citiesContainer">
+      <div className="citiesContainer">
+         {this.state.citiesList.map(city => (
           <ul>
-            {this.state.citiesList.map(city => (
-              <li className="citiesContainer"
+            <li className="citiesContainer"
                 id="model"
                 // className={`complete-${city.complete.toString()}`}
-                key={city._id}>
-                  {console.log('dddddddddd', city.achistoricalPlaces)}
+                key={city._id} cityN={city.name}>
+                  {/* <img className="citiesImg" src={city.image_url} /> */}
+                  <div className="centered">JORDAN CITIES</div>
+                  <div className='container' id={city.name}>
+                    <div className="about">{city.name}</div>
+                    <div className="hometext">{city.description}</div>
+                    </div>
+                </li>
+          <ul>
+          {city.achistoricalPlaces.map(site => (
 
-                <img className="citiesImg" src={city.image_url} />
-                <div className="centered">JORDAN CITIES</div>
-                <div className='container' id={city.name}>
-                  <div className="about">{city.name}</div>
-                  <div className="hometext">{city.description}  </div>
-                </div>
-                <ul>
+          //  console.log('inside return', site.reviews)
+         
+          <If condition={site.cityName}>
+          <Onesite
+          keysite = {site._id}
+          historical_name = {site.historical_name}
+          brief = {site.brief_info}
+          img = {site.image_link}
+          loggedIn ={this.props.loggedIn}
+          reviews = {site.reviews}
 
-                {city.achistoricalPlaces.map(site => (
-                  <li key={site._id}>
-                    <div>{site.historical_name}</div>
-                <div>{site.brief_info}</div>
-                <Link to={`/cities/${city.name}/${city._id}/${site.historical_name}/${site._id}`}><img src={site.image_link}/></Link>
-{/* <Reviews/> */}
-                  </li>
-                ))}
 
-                </ul>
-              </li>
-            ))}
+          />
+    </If>
+               
+          ))}
+          
+           
+
           </ul>
-        </div>
+        </ul>
+    
+    ))}
 
-
-
-      </>
+    </div>
     )
-  }
+      
+}}
+export default City;
 
-}
-export default City
 

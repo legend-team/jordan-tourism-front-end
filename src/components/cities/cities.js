@@ -2,7 +2,7 @@ import React from 'react';
 import { HashLink as Link } from 'react-router-hash-link';
 // import { Switch, Route, Link } from "react-router-dom";
 // import City from '../sities/sites.js'
-
+import Onecity from '../Onecity/Onecity.js'
 
 import { When } from '../if/if.js';
 import Modal from '../modal/modal.js';
@@ -11,7 +11,7 @@ import './cities.scss'
 
 
 
-const citiesAPI = 'http://tourism-api-back-end.herokuapp.com/cities';
+const citiesAPI = 'http://localhost:3300/cities';
 
 class Cities extends React.Component {
   constructor(props) {
@@ -118,45 +118,18 @@ class Cities extends React.Component {
     </div>
         </div>
 
-
-        <div className="citiesContainer">
-          <ul>
+         
             {this.state.citiesList.map(city => (
-              <li className="citiesContainer"
-                id="model"
-                // className={`complete-${city.complete.toString()}`}
-                key={city._id}>
-
-                {/* {console.log('fffffffffff', city)} */}
-                <div className="citiesContainer">
-
-                  <span className="cityName">
-                    {city.name}
-                  </span>
-                  <a > <Link to={`/sites/${city.name}/${city.histori}`}><img src={city.image_url} className="cityImage" />
-                  </Link> </a>
-
-                </div>
-                {/* <Route exact path={`/${city.name}/${city._id}`}>
-                  <City />
-                </Route> */}
-
-
-              </li>
-            ))}
-          </ul>
-        </div>
-
-   
-
-
-
+              <Onecity 
+              key={city._id}
+              cityName = {city.name}
+              image_url = {city.image_url}/>))
+              }
       </>
     )
-  }
-
+}
 }
 
 
 
-export default Cities;
+ export default Cities; 

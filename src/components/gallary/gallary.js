@@ -132,7 +132,7 @@ function Gallary() {
       <div className="App">
         <button onClick={() => beginUpload("image")}>Upload Image</button>
       <section>
-        {console.log('gggggggggggg', images)}
+        {/* {console.log('gggggggggggg', images)} */}
         {images.map(i => <Image
               key={i}
               publicId={i}

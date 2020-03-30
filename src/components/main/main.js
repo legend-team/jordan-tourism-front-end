@@ -30,7 +30,7 @@ function Main(){
         </Route>
         <Route path="/aboutjordan">
         <If condition={Usestate.loggedIn}>
-          <AboutJordan />
+          <AboutJordan  />
         </If>
         <If condition={!Usestate.loggedIn}>
           <Signin/>
@@ -43,7 +43,7 @@ function Main(){
           <Cities />
         </Route>
         <Route path='/sites'>
-          <Sites />
+          <Sites loggedIn = {Usestate.loggedIn}/>
         </Route>
         <Route path="/contactus">
           <ContactUs />

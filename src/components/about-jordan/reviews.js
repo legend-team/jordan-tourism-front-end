@@ -1,8 +1,13 @@
 import React from 'react';
 import Gallery from '../gallary/gallary.js'
 // const reviewsAPI = 'http://localhost:3300/reviews';
+import OneReview from './onereviewe.js'
 const reviewsAPI = 'http://tourism-api-back-end.herokuapp.com/reviews'
 
+const If = props => {
+  // console.log('propsinsis',props)
+  return props.condition ? props.children : null;
+}
 class Reviews extends React.Component {
   constructor(props) {
     super(props);
@@ -26,7 +31,8 @@ class Reviews extends React.Component {
       method: method,
       mode: 'cors',
       cache: 'no-cache',
-      headers: { 'Content-Type': 'application/json' },
+      headers: {               
+      'Content-Type': 'application/json' },
       body: body ? JSON.stringify(body) : undefined,
     })
       .then(response => response.json())
@@ -94,6 +100,9 @@ class Reviews extends React.Component {
   componentDidMount = () => {
     this.getreviewsreviews();
   }
+  compare = (review,b)=>{
+if (review===b){return true} 
+if (review!==b){return false}   }
   //href={`${reviewsAPI}/${review.name}/${review._id}`}
   render() {
     return (
@@ -102,33 +111,24 @@ class Reviews extends React.Component {
 
 
         <div className="reviewsContainer">
-          <ul>
+          <ul hist={this.props.historical_name}>
           
-            {console.log('dddddddddd', this.state.reviewsList)}
+            {console.log('props{site._id}', this.props.historical_name)}
             {this.state.reviewsList.map(review => (
-              <li className="reviewsContainer"
-                id="model"
-                // className={`complete-${review.complete.toString()}`}
-                key={review._id}>
-
-                <div className="centered">JORDAN reviews</div>
-                <div className='container'>
-                  <div className="about">{review.siteName}</div>
-                  <div className="hometext">{review.review}  </div>
-                </div>
-                <button onClick={() => this.deletereview(review._id)}>
-                    Delete
-                  </button>
-            
-              </li>
-            ))}
+              // console.log('{this.compare(review,this.props.historical_name)}',{this.compare(review,this.props.historical_name)})
+                <If condition= {this.compare(review.siteName,this.props.historical_name)}>
+              
+              <OneReview 
+              siteName = {review.siteName}
+              review ={review.review}
+              />
+              </If> 
+           ))}
           </ul>
         </div>
-
-
         <div>
-            <h3>Add Item</h3>
-            <Gallery/>
+            {/* <h3>Add Item</h3> */}
+            {/* <Gallery/> */}
             <form onSubmit={this.addreview}>
               <label>
                 <span>Site Name</span>
@@ -151,6 +151,8 @@ class Reviews extends React.Component {
               <button id="add">Add Item</button>
             </form>
           </div>
+
+      
 
 
 
