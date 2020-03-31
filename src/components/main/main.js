@@ -56,7 +56,8 @@ function Main(){
         </Route>
         </Switch>
     </main>
-  )
+  );
+
 }
   
   // constructor(props) {

@@ -9,9 +9,9 @@ import Onesite from '../onesite/onesite.js'
 // import { When } from '../if/if.js';
 // import Modal from '../modal/modal.js';
 
+// const citiesAPI = 'http://localhost:3000/cities';
 const citiesAPI = 'http://tourism-api-back-end.herokuapp.com/cities';
 const sitesAPI = 'http://tourism-api-back-end.herokuapp.com/sites';
-
 
 const If = props => {
   return props.condition ? props.children : null;
@@ -169,4 +169,17 @@ class City extends React.Component {
 }
 export default City;
 
+
+
+
+
+// import React from 'react';
+// function Sites() {
+//     return (
+//       <div>
+//         <h2>Sites</h2>
+//       </div>
+//     );
+//     }
+// export default Sites;
 

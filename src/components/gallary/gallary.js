@@ -127,12 +127,24 @@ function Gallary() {
     localStorage.setItem("image_storage", JSON.stringify(images));
   });
 
+  useEffect(() => {
+    const data = localStorage.getItem("image_storage");
+    if (data) {
+         console.log('parseddata',JSON.parse(data));
+         setImages(JSON.parse(data))
+    }
+  }, []);
+  //
+  useEffect(() => {
+    localStorage.setItem("image_storage", JSON.stringify(images));
+  });
+
   return (
    <CloudinaryContext cloudName="dus3du5fr">
       <div className="App">
         <button onClick={() => beginUpload("image")}>Upload Image</button>
       <section>
-        {/* {console.log('gggggggggggg', images)} */}
+        {console.log('gggggggggggg', images)}
         {images.map(i => <Image
               key={i}
               publicId={i}

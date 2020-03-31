@@ -1,8 +1,12 @@
 import React from 'react';
 import OneReview from './onereviewe.js'
 import Onesite from '../onesite/onesite.js'
+import Gallery from '../gallary/gallary.js'
 
-const reviewsAPI = 'http://tourism-api-back-end.herokuapp.com/reviews'
+
+// const reviewsAPI = 'http://localhost:3300/reviews';
+const reviewsAPI = 'http://tourism-api-back-end.herokuapp.com/reviews';
+
 
 const If = props => {
   return props.condition ? props.children : null;

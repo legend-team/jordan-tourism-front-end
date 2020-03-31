@@ -12,7 +12,7 @@ function App() {
       <LoginContext>
       < Header />
       < Main />
-      {/* < Footer /> */}
+      < Footer />
       </LoginContext>
     )
   }
