@@ -1,4 +1,3 @@
-    
 import React from 'react';
 
 import { Switch, Route, Link } from "react-router-dom";
@@ -7,7 +6,8 @@ import { Switch, Route, Link } from "react-router-dom";
 import { When } from '../if/if.js';
 import Modal from '../modal/modal.js';
 
-const citiesAPI = 'http://localhost:3000/cities';
+// const citiesAPI = 'http://localhost:3000/cities';
+const citiesAPI = 'http://tourism-api-back-end.herokuapp.com/cities';
 
 class City extends React.Component {
   constructor(props) {
