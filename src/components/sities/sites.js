@@ -117,52 +117,84 @@ class City extends React.Component {
     this.getsitescitys();
   }
 
-
-  //href={`${citiesAPI}/${city.name}/${city._id}`}
   render() {
     return (
-      <div className="citiesContainer">
-        {this.state.citiesList.map(city => (
-          <ul>
-            <li className="citiesContainer"
-              id="model"
-              // className={`complete-${city.complete.toString()}`}
-              key={city._id} cityN={city.name}>
-              {/* <img className="citiesImg" src={city.image_url} /> */}
-              <div className='container' id={city.name}>
-                <div className="about">{city.name}</div>
-                <div className="hometext">{city.description}</div>
-              </div>
-            </li>
-            <ul>
-              {city.achistoricalPlaces.map(site => (
+      <>
+         <div className="main-wrapper">
+            <section className="l-section l-section--list">
+                <div className="c-full-slider sites js-full-slider">
+                    <div className="swiper-wrapper">
 
-                //  console.log('inside return', site.reviews)
-                  <div>
+                        <div className="container">
+                            <div className="c-full-slider__content">
+                                <div className="c-full-slider__main-row">
+                                    <p className="c-full-slider__title">
+                                        Explore our ancient history and natural beauty. Immerse yourself into the rich culture whilst
+                                        experiencing the mouth-watering flavours of Jordan cuisine!
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
 
-                  <If condition={!this.props.loggedIn}><Link to='/signin'><button>Log In To Add Review</button> </Link></If>
-                <If condition={site.cityName}>
-                  <Onesite
-                    keysite={site._id}
-                    historical_name={site.historical_name}
-                    brief={site.brief_info}
-                    // img={site.image_link}
-                    loggedIn={this.props.loggedIn}
-                    reviews={site.reviews}
-                    />
-                </If>
                     </div>
+                </div>
+                <div className="c-social c-social--ghost u-is-desktop">
+                    <a className="c-social__item c-social__inline-icon" href="https://www.instagram.com/visitjordan/"
+                        target="_blank">
+                        <i className="fab fa-instagram-square"></i>
+                    </a>
+                    <a className="c-social__item " href="https://www.facebook.com/VisitJordan/" target="_blank">
+                        <i className="fab fa-facebook-square"></i>
+                    </a>
+                    <a className="c-social__item " href="https://twitter.com/VisitJordan/" target="_blank">
+                        <i className="fab fa-twitter-square"></i>
+                    </a>
+                    <a className="c-social__item " href="https://www.youtube.com/user/visitjordan/" target="_blank">
+                        <i className="fab fa-youtube-square"></i>
+                    </a>
+                </div>
+            </section>
+          </div>
 
-              ))}
+          <section className="l-section l-section--list">
+              <div className="container">
+                  <div className="u-min-width-content@md-up u-text-center u-gap-bottom-large u-gap-center">
+                      <h1 className="u-h3">Natural and Historical places in Jordan</h1>
+                      <p className="u-color-gray">
+                          Jordan has a lot of great destinations to offer. Exceptional landmarks, wonderful natural
+                          sceneries, historical legacies and a rich culture. Jordan is renowned for its hospitality and is
+                          always eager to please. The perfect Jordan experience is just around the corner.
+                      </p>
+                  </div>
+                  <div className="l-columns u-scrolling-wrapper">
+                      {this.state.citiesList.map(city => (
+                        city.achistoricalPlaces.map((site, idx) => (
+                          <div className="l-column is-4" key={idx}>
+                              <div className="c-card ">
+                                  <div className="c-card__box c-card__box--xsm">
+                                      <div className="c-card__backside">
+                                        <img className="c-card__visual lazyload" src={site.image_link} />
+                                      </div>
+                                      <div className="c-card__frontside">
+                                          <a className="c-card__inner" href="/attractions/turkish-coffee">
+                                            <div className="c-card__footer">
+                                              <div className="c-card__article-title">
+                                                <div className="c-card__subtitle">Destinations</div>
+                                                <div className="c-card__title">{site.historical_name}</div>
+                                              </div>
+                                            </div>
+                                          </a>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                        ))
+                      ))}
+                  </div>
+              </div>
+          </section>
 
-
-
-            </ul>
-          </ul>
-
-        ))}
-
-      </div>
+      </>
     )
 
   }

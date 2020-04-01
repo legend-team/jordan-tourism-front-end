@@ -469,7 +469,7 @@ figure {
 }
 
 .l-header {
-  position: absolute;
+  position: fixed;
   top: 0;
   z-index: 100;
   display: -webkit-box;
@@ -477,7 +477,9 @@ figure {
   display: flex;
   width: 100%;
   height: 82px;
-  color: #fff
+  color: #fff;
+  background-color: #111F2A;
+  box-shadow: 1px 5px 30px #000;
 }
 
 @media (min-width: 992px) {
@@ -596,7 +598,7 @@ figure {
   -webkit-box-direction: normal;
   -ms-flex-direction: column;
   flex-direction: column;
-  padding-top: 50px
+  padding-top: 30px
 }
 
 @media (min-width: 992px) {
@@ -605,7 +607,7 @@ figure {
       -webkit-box-direction: normal;
       -ms-flex-direction: row;
       flex-direction: row;
-      padding-bottom: 90px
+      padding-bottom: 30px
   }
 }
 
@@ -1107,13 +1109,34 @@ figure {
 .c-full-slider {
   position: relative;
   width: 100%;
-  height: 550px;
+  height: 100vh;
   overflow: hidden;
-  // background-image: url("../uploads/full-slider/demre-patara-slider-2.jpg");
-  background-image: url("https://www.goturkey.com/assets/uploads/full-slider/demre-patara-slider-2.jpg");
+  // background-image: url("https://www.goturkey.com/assets/uploads/full-slider/demre-patara-slider-2.jpg");
+  background-image: url("https://i.ytimg.com/vi/vUfSUc7uoH4/maxresdefault.jpg");
   background-repeat: no-repeat;
   background-size: cover;
-  /* background-attachment: s; */
+}
+
+.c-full-slider.cities {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  // background-image: url("https://www.fatehinfo.ps/upload/photo_library/photo/1512454617-4946-2.jpg");
+  background-image: url("https://airlines-airports.com/wp-content/uploads/2016/07/Jordan-Amman.jpg");
+  // background-image: url("https://i.ytimg.com/vi/vUfSUc7uoH4/maxresdefault.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.c-full-slider.sites {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  background-image: url("https://live.staticflickr.com/387/30734832634_51945a5bc8_b.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .c-full-slider .container {
@@ -1365,6 +1388,10 @@ figure {
   -webkit-transition: all 0.3s linear;
   -o-transition: all 0.3s linear;
   transition: all 0.3s linear
+}
+
+span.c-nav__item{
+  cursor: pointer;
 }
 
 @media (min-width: 992px) {
@@ -2167,6 +2194,10 @@ figure {
 //   background: url("../img/banner/istanbul.jpg") no-repeat center
 // }
 
+.login{
+  cursor: pointer;
+}
+
 .c-banner.lazyloaded::before {
   -webkit-animation: moveBackground 15s linear infinite;
   animation: moveBackground 15s linear infinite
@@ -2284,8 +2315,8 @@ figure {
 .c-social--ghost {
   position: absolute;
   right: 5%;
-  top: 190px;
-  z-index: 100
+  top: 35vh;
+  z-index: 75
 }
 
 @media (max-width: 992px) {
@@ -2371,40 +2402,12 @@ figure {
 }
 /*******************************/
 .fa-instagram-square, .fa-facebook-square, .fa-twitter-square, .fa-youtube-square{
-  color: #fff;
+  color: #333;
   font-size: 42px;
 }
 
-/* .fa-instagram-square:hover{
-  color: #999;
-}
-
-.fa-facebook-square:hover{
-  color: #999;
-}
-
-.fa-twitter-square:hover{
-  color: #999;
-}
-
-.fa-youtube-square:hover{
-  color: #999;
-} */
-
-.fa-instagram-square:hover{
-  color: #e1306c;
-}
-
-.fa-facebook-square:hover{
-  color: #3b5998;
-}
-
-.fa-twitter-square:hover{
-  color: #1da1f2;
-}
-
-.fa-youtube-square:hover{
-  color: #ff0000;
+.fa-instagram-square:hover, .fa-facebook-square:hover, .fa-twitter-square:hover, .fa-youtube-square:hover{
+  color: #fff;
 }
 
 /* .c-social__inline-icon path {
@@ -3725,17 +3728,18 @@ figure {
   align-items: center;
   width: 100%;
   height: 100%;
-  padding: 30px 25px
+  padding: 15px 25px
 }
 
 @media (min-width: 992px) {
   .c-auth__main {
-      min-height: 635px
+      min-height: 500px
   }
 }
 
 .c-auth__section {
-  width: 100%
+  // width: 100%
+  width: 400px;
 }
 
 .c-auth__form {
@@ -4493,7 +4497,9 @@ small {
   transition-property: transform;
   transition-property: transform, -webkit-transform;
   -webkit-box-sizing: content-box;
-  box-sizing: content-box
+  box-sizing: content-box;
+  // justify-content: space-between;
+  flex-wrap: wrap;
 }
 
 .swiper-container-android .swiper-slide,
@@ -4527,8 +4533,8 @@ small {
   -ms-flex-negative: 0;
   flex-shrink: 0;
   width: 100%;
-  width: 380px;
-  margin-right: 20px;
+  width: 370px;
+  margin: 0 10px 20px 10px;
   height: 100%;
   position: relative;
   -webkit-transition-property: -webkit-transform;
@@ -5315,7 +5321,8 @@ button.swiper-pagination-bullet {
   flex-direction: column;
   max-width: 100%;
   margin: auto;
-  height: 100vh
+  height: 100vh;
+  
 }
 
 .glightbox-container .ginner-container.gvideo-container {
@@ -5451,7 +5458,7 @@ button.swiper-pagination-bullet {
 }
 
 .ginlined-content {
-  overflow: auto;
+  // overflow: auto;
   display: block !important;
   opacity: 1
 }
@@ -5645,6 +5652,7 @@ button.swiper-pagination-bullet {
 .gnext,
 .gclose {
   background-repeat: no-repeat;
+  background-color: rgba(0, 0, 0, 0);
   z-index: 99999;
   cursor: pointer;
   width: 26px;
@@ -5767,22 +5775,29 @@ iframe.wait-autoplay {
   height: 56px
 }
 
+
 .glightbox-auth .gclose,
 .glightbox-clean .gclose,
 .glightbox-modern .gclose {
-  width: 35px;
-  height: 35px;
-  top: 15px;
-  right: 10px;
+  width: 33px;
+  height: 33px;
+  top: 20px;
+  right: 20px;
   position: absolute;
-  opacity: .7;
-  background-position: -59px 2px
+  opacity: 1;
+  background-position: -59px 2px;
 }
 
 .glightbox-auth .gclose svg,
 .glightbox-clean .gclose svg,
 .glightbox-modern .gclose svg {
   width: 20px
+}
+
+.fa-times{
+  color: #fff;
+  font-size: 100px;
+  transition: 0.2s;
 }
 
 .glightbox-auth .gclose:hover,
@@ -6097,7 +6112,7 @@ iframe.wait-autoplay {
       cursor: grab
   }
   .gslide-inline {
-      max-height: 95vh
+      max-height: 85vh
   }
   .gslide-external {
       max-height: 95vh
@@ -6110,7 +6125,7 @@ iframe.wait-autoplay {
       height: auto
   }
   .goverlay {
-      background: rgba(0, 0, 0, 0.92)
+      background: rgba(0, 0, 0, 0.65)
   }
   .glightbox-clean .gslide-media,
   .glightbox-modern .gslide-media {

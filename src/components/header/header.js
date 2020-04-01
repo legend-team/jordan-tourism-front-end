@@ -1,6 +1,5 @@
-// import React from 'react';
-import React, { useState, useEffect } from 'react';
-import { When } from '../if/if.js';
+import React, { useState } from 'react';
+import { If, Then, When } from '../if/if.js';
 import Modal from '../modal/modal.js';
 import { Link } from "react-router-dom";
 import './header.scss'
@@ -8,43 +7,55 @@ import './header.scss'
 const Header = props => {
 
   const [ show, setShow ] = useState(false);
+  const [ logedIn, setlogedIn ] = useState(true);
 
   function headerToggelShow() {
-    console.log("show => ",show);
     setShow(!show);
-    console.log("show => ",show);
+  }
+  
+  function spanToggelShow() {
+    headerToggelShow();
+    setlogedIn(!logedIn);
+  }
+
+  function logOut() {
+    setlogedIn(!logedIn);
   }
 
   return (
     <>
-      <header class="l-header">
-        <div class="container">
-            <div class="l-header__brand">
+      <header className="l-header">
+        <div className="container">
+            <div className="l-header__brand">
                 &nbsp;JoRdAn<br />ExPloReRs
             </div>
-            <div class="l-header__main">
-                <div class="l-header__tools">
-                    <div class="l-header__navigataion">
-                        <nav class="c-nav">
+            <div className="l-header__main">
+                <div className="l-header__tools">
+                    <div className="l-header__navigataion">
+                        <nav className="c-nav">
                             <Link to="/" className="c-nav__item" >Home</Link>
                             <Link to="/cities" className="c-nav__item" >Jordan Cities</Link>
                             <Link to="/sites" className="c-nav__item" >Places To Visit</Link>
+                            {/* <Link to="/signin" onClick={() => headerToggelShow()} className="c-nav__item" >Login</Link> */}
+                            <If condition={logedIn}>
+                              <Then>
+                                <span className="c-nav__item" onClick={() => headerToggelShow()}>Login</span>
+                              </Then>
+                            </If>
+                            <If condition={!logedIn}>
+                              <Then>
+                                <span className="c-nav__item" onClick={() => logOut()}>LogOut</span>
+                              </Then>
+                            </If>
                         </nav>
-                    </div>
-                    <div class="l-header__actions">
-                        <div class="c-icon-nav">
-                            {/* <a class="c-icon-nav__item js-auth-button js-auth-lightbox" href="#auth"> */}
-                                <span class="js-auth-label" onClick={() => headerToggelShow()}>Login</span>
-                            {/* </a> */}
-                        </div>
-                    </div>
+                    </div>                    
                 </div>
             </div>
         </div>
       </header>
 
       <When condition={show}>
-        <Modal />
+        <Modal close={headerToggelShow} closeModel={spanToggelShow} />
       </When>
     </>
   );

@@ -53,6 +53,8 @@ class Reviews extends React.Component {
         reviewsList: [...this.state.reviewsList, newreview],
       });
 
+      console.log(this.state.reviewsList);
+
     this.callAPI(reviewsAPI, 'POST', this.state.review, _updateState);
 
   };
@@ -136,10 +138,11 @@ if (review!==b){return false}   }
               <label>
                 
                 <input
-                type='hidden'
+                  type='text'
                   name="siteName"
                   onChange={this.handleInputChange}
-                  // value={site.historical_name}
+                  // value={this.props.historical_name}
+
                 />
               </label>
             

@@ -106,14 +106,14 @@ class Cities extends React.Component {
       <>
         <div className="main-wrapper">
             <section className="l-section l-section--list">
-                <div className="c-full-slider cities js-full-slider">
+                <div className="c-full-slider js-full-slider">
                     <div className="swiper-wrapper">
 
                         <div className="container">
                             <div className="c-full-slider__content">
                                 <div className="c-full-slider__main-row">
                                     <p className="c-full-slider__title">
-                                      Jordan is a unique destination offering breathtaking sights, charming accommodations. Jordan is home to countless wonders that are sure to leave you in awe, Jordan has witnessed an emergence of luxury hotels in Amman, Petra, Aqaba and the Dead Sea.                                    
+                                      {this.state.citiesList.name}
                                     </p>
                                 </div>
                             </div>
@@ -141,24 +141,38 @@ class Cities extends React.Component {
             <section className="l-section l-section--list" >
                 <div className="container">
                     <div className="u-min-width-content@md-up u-text-center u-gap-bottom-large u-gap-center">
-                        <h1 className="u-h1">Discover All the Cities of Jordan</h1>
+                        <h1 className="u-h1">
+                          Best Sites in 
+                          {this.state.citiesList.name}
+                        </h1>
                         <p className="u-color-gray">
-                            Jordan can be regarded as a typically Arab country for its people are very warm, friendly and hospitable. Jordanians are typically happy to forgive foreigners who break the rules of etiquette. However, visitors seen to be making an effort to observe local customs will undoubtedly win favour.<br />
-                                    
-                            Joining local people for a cup of tea or coffee can be a wonderful way to learn more about local culture. If you are invited yet are unable to attend, then it is perfectly acceptable to decline. Place your right hand over your heart and politely make your excuses.
+                          {this.state.citiesList.description}
                         </p>
                     </div>
                     <div className="c-carousel">
                         <div className="swiper-container js-carousel">
                             <div className="swiper-wrapper">
-                              {this.state.citiesList.map((city, idx) => (
-                                <Onecity 
-                                  key = {idx}
-                                  id = {city._id}
-                                  cityName = {city.name}
-                                  image_url = {city.image_url}
-                                />)
-                              )}
+                            {this.state.citiesList.achistoricalPlaces.map((site, idx) => (
+                              <div className="l-column is-4" key={idx}>
+                                  <div className="c-card ">
+                                      <div className="c-card__box c-card__box--xsm">
+                                          <div className="c-card__backside">
+                                            <img className="c-card__visual lazyload" src={site.image_link} />
+                                          </div>
+                                          <div className="c-card__frontside">
+                                              <a className="c-card__inner" href="/attractions/turkish-coffee">
+                                                <div className="c-card__footer">
+                                                  <div className="c-card__article-title">
+                                                    <div className="c-card__subtitle">Destinations</div>
+                                                    <div className="c-card__title">{site.historical_name}</div>
+                                                  </div>
+                                                </div>
+                                              </a>
+                                          </div>
+                                      </div>
+                                  </div>
+                              </div>
+                            ))}
                             </div>
                         </div>
                     </div>

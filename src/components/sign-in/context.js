@@ -8,6 +8,7 @@ const API = 'http://tourism-api-back-end.herokuapp.com'
 export const LoginContext = React.createContext()
 
 class LoginProvider extends React.Component{
+
     constructor(props){
         super(props)
         this.state ={
@@ -18,12 +19,11 @@ class LoginProvider extends React.Component{
             valdiateToken:this.valdiateToken,
             setlogin:this.setlogin,
             setState:this.setState,
-            user:{}
-            
-        }
-        
+            user:{}            
+        }        
     }
-     login = async(username,password)=>{
+
+    login = async(username,password)=>{
         let output = await fetch(`${API}/signin`,{
            method:'POST',
            mode:'cors',
@@ -36,33 +36,34 @@ class LoginProvider extends React.Component{
         let token =await output.text()
         this.valdiateToken(token)
     }
+
     valdiateToken = (token)=>{
         try {
-            console.log(token)
             let user = jwt.verify(token,'ser123')
-            console.log('user',user)
             this.setlogin(true,token,user)
-            console.log('user verfiy',token)
         } catch  {
             this.setlogin(false,null,{})
-            console.error('token invalid')
         }
     }
+
     setlogin = (loggedIn,token,user)=>{
         cookies.save('auth',token)
         this.setState({token,loggedIn,user})
     }
+
     logout = ()=>{
         this.setlogin(false,null,{})
     }
+
     componentDidMount =()=>{
         const qs = new URLSearchParams(window.location.search)
         const cookiesToken = cookies.load('auth')
         const token  = qs.get('token') || cookiesToken || null
-        this.valdiateToken(`token`)
+        // this.valdiateToken(`token`)
+        this.valdiateToken(token)
     }
+
     signUp = async(username,password,email_user)=>{
-        console.log('Hi')
         let response = await fetch(`${API}/signup`,{
             method:'POST',
             mode:'cors',
@@ -85,4 +86,4 @@ class LoginProvider extends React.Component{
     }
 }
 
-export default LoginProvider
+export default LoginProvider;

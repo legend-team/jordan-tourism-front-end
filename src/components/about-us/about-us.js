@@ -19,12 +19,12 @@
 import React from "react";
 
 function City(props) {
-  const API = `http://tourism-api-back-end.herokuapp.com/cities/amman/${props.city.id}`
-  return (
-    <li>
-      <a href={API} > <img src={props.city.url}/> </a>
-    </li>
-  );
+  // const API = `http://tourism-api-back-end.herokuapp.com/cities/amman/${props.city.id}`
+  // return (
+  //   <li>
+  //     <a href={API} > <img src={props.city.url}/> </a>
+  //   </li>
+  // );
 }
 //      <a href={props.person.url}> {props.person.name}</a>
 

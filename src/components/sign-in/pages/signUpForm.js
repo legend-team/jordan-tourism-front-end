@@ -1,81 +1,60 @@
-import React, { Component ,useContext} from 'react';
-import { Link } from 'react-router-dom';
-import {LoginContext}from './../context.js'
+import React, { Component } from 'react';
+import { LoginContext } from './../context.js'
 
-const If = props => {
-  return props.condition ? props.children : null;
-}
-// const output = useContext(LoginContext)
-class SignUpForm extends Component { 
+class SignUpForm extends Component {
+
   static contextType = LoginContext
+
   constructor() {
-        super();
-        this.state = {
-            email: '',
-            password: '',
-            name: '',
-            hasAgreed: false
-        };
+      super();
+      this.state = {
+          email: '',
+          password: '',
+          name: '',
+          hasAgreed: false
+      };
+      this.handleSubmit = this.handleSubmit.bind(this);
+  }
 
-        this.handleChange = this.handleChange.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
-    }
+  handleSubmit(e) {
+      e.preventDefault();
+      console.log("signed Up successfuly");
+      this.context.signUp(this.state.name,this.state.password,this.state.email);
 
-    handleChange(e) {
-        let target = e.target;
-        let value = target.type === 'checkbox' ? target.checked : target.value;
-        let name = target.name;
+      // onClick={this.props.signedUp}
+      this.props.signedUp();
+  }
 
-        this.setState({
-          [name]: value
-        });
-    }
+  render() {
+      return (
+        <>
 
-    handleSubmit(e) {
-        e.preventDefault();
-        console.log(this.context)
-        this.context.signUp(this.state.name,this.state.password,this.state.email)
-        // output.signUp(this.state.name,this.state.password,this.state.email)
-        console.log('The form was submitted with the following data:');
-        console.log(this.state);
-    }
-
-    render() {
-        return (
-        <div className="FormCenter">
-           <If condition={this.context.loggedIn}>
-             <button onClick={this.context.logout}>Log Out!</button>
-            </If>
-            <If condition={!this.context.loggedIn}>
-            <form onSubmit={this.handleSubmit} className="FormFields">
-              <div className="FormField">
-                <label className="FormField__Label" htmlFor="name">Full Name</label>
-                <input type="text" id="name" className="FormField__Input" placeholder="" name="name" value={this.state.name} onChange={this.handleChange} />
-              </div>
-              <div className="FormField">
-                <label className="FormField__Label" htmlFor="password">Password</label>
-                <input type="password" id="password" className="FormField__Input" placeholder="Enter your password" name="password" value={this.state.password} onChange={this.handleChange} />
-              </div>
-              <div className="FormField">
-                <label className="FormField__Label" htmlFor="email">E-Mail Address</label>
-                <input type="email" id="email" className="FormField__Input" placeholder="Enter your email" name="email" value={this.state.email} onChange={this.handleChange} />
-              </div>
-
-              <div className="FormField">
-                <label className="FormField__CheckboxLabel">
-                    <input className="FormField__Checkbox" type="checkbox" name="hasAgreed" value={this.state.hasAgreed} onChange={this.handleChange} /> I agree all statements in <a href="" className="FormField__TermsLink">terms of service</a>
-                </label>
-              </div>
-
-              <div className="FormField">
-                  <button className="FormField__Button mr-20">Sign Up</button> <Link to="/sign-in" className="FormField__Link">I'm already member</Link>
-              </div>
-            </form>
-            </If>
-            
+          <div className="c-auth__section js-auth-section">
+            <div className="u-h2">Create an account</div>
+            <div className="c-auth__form">
+              <form className="c-form" id="register" onSubmit={this.handleSubmit} >
+                <div className="c-form__group">*
+                  <input className="c-form-control" name="name" type="text" placeholder="Full Name" required="required" />
+                </div>
+                <div className="c-form__group">*
+                  <input className="c-form-control" name="password" type="password" placeholder="Password" minLength="6" required="required" />
+                </div>
+                <div className="c-form__group">
+                  <input className="c-form-control" name="email" type="email" placeholder="Email" />
+                </div>
+                <div className="c-form__action-group">
+                  <button className="c-button c-button--block c-button--info" type="submit">Sign Up</button>
+                  <div className="c-form__action-label">
+                    Already registered?<a className="js-auth-action u-primary-color login" onClick={this.props.close} data-type="login">Login</a>
+                  </div>
+                </div>
+              </form>
+            </div>
           </div>
-        );
-    }
+
+        </>
+      );
+  }
 }
 
 export default SignUpForm;
