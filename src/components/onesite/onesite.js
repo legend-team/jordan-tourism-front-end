@@ -16,7 +16,7 @@ class Onesite extends React.Component{
       render() {
           return (
               <>
-             { console.log('inside onesite', this.props)}
+             {/* { console.log('inside onesite', this.props)} */}
            <li key={this.props.key}>
           <div>{this.props.historical_name}</div>
             <div>{this.props.brief}</div>

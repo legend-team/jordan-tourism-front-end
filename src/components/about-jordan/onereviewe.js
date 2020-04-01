@@ -16,13 +16,13 @@ class OneReview extends React.Component{
       
   handleInputChange = e => {
     this.setState({ review: { ...this.state.review, [e.target.name]: e.target.value } });
-    console.log('oooooo', this.state.review);
+    // console.log('oooooo', this.state.review);
     
   };
       render() {
           return (
               <>
-             { console.log('inside rev', this.props)}
+             {/* { console.log('inside rev', this.props)} */}
              <div className='container'>
                   {/* <div className="about">{this.props.siteName}</div> */}
                   <div className="about">{this.props.review}</div>

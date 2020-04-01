@@ -10,7 +10,7 @@ console.log('iiiiiiiii');
 function App() {
     return (
       <LoginContext>
-      < Header />
+      {/* < Header /> */}
       < Main />
       {/* < Footer /> */}
       </LoginContext>

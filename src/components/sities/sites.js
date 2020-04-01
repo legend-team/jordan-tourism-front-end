@@ -8,7 +8,8 @@ import Onesite from '../onesite/onesite.js'
 
 const citiesAPI = 'http://tourism-api-back-end.herokuapp.com/cities';
 const sitesAPI = 'http://tourism-api-back-end.herokuapp.com/sites';
-    
+const reviewsAPI = 'http://tourism-api-back-end.herokuapp.com/reviews'
+
 
 const If = props => {
   return props.condition ? props.children : null;
@@ -19,15 +20,28 @@ class City extends React.Component {
     this.state = {
       citiesList: [],
       city: {},
-      site:[],
+      sitesList:[],
+      site:{},
+      reviewsList: [],
+      review: {},
       showDetails: false,
       details: {},
+      value: ''
+
     };
   }
 
   handleInputChange = e => {
     this.setState({ city: { ...this.state.city, [e.target.name]: e.target.value } });
     this.setState({ site: { ...this.state.site, [e.target.name]: e.target.value } });
+  };
+  
+  handleInputChangeR = e => {
+    // this.setState({value: e.target.value});
+    this.setState({ review: { ...this.state.review, [e.target.name]: e.target.value } });
+    console.log('oooooosssnnnnsssss', this.state.value);
+
+    
   };
 
   callAPI = (url, method = 'get', body, handler, errorHandler) => {
@@ -44,19 +58,19 @@ class City extends React.Component {
       .catch((e) => typeof errorHandler === 'function' ? errorHandler(e) : console.error(e));
   };
 
-  addcity = (e) => {
+  addSite = (e) => {
 
     e.preventDefault();
     e.target.reset();
 
-    const _updateState = newcity =>
+    const _updateState = newSite =>
       this.setState({
-        citiesList: [...this.state.citiesList, newcity]
+        sitesList: [...this.state.sitesList, newSite]
         
      
       });
 
-    this.callAPI(citiesAPI, 'POST', this.state.city, _updateState);
+    this.callAPI(sitesAPI, 'POST', this.state.site, _updateState);
 
   };
 
@@ -104,7 +118,7 @@ class City extends React.Component {
     this.callAPI(citiesAPI, 'GET', undefined, _updateState);
   };
   getsitescitys = () => {
-    const  _updateSiteState = data => this.setState({ site: data });
+    const  _updateSiteState = data => this.setState({ sitesList: data });
     this.callAPI(sitesAPI, 'GET', undefined, _updateSiteState);
     console.log('fffffffffff', this.state.site)
   };
@@ -114,11 +128,51 @@ class City extends React.Component {
     this.getsitescitys();
   }
  
+  addreview = (e) => {
 
+    e.preventDefault();
+    e.target.reset();
+
+    const _updateState = newreview =>
+      this.setState({
+        reviewsList: [...this.state.reviewsList, newreview],
+      });
+
+    this.callAPI(reviewsAPI, 'POST', this.state.review, _updateState);
+
+  };
   //href={`${citiesAPI}/${city.name}/${city._id}`}
   render() {
     return (
+ 
       <div className="citiesContainer">
+              <div>
+            {/* <h3>Add Item</h3> */}
+            {/* <Gallery/> */}
+            <form onSubmit={this.addreview}>
+              <label>
+                <span>Site Name</span>
+                <select  name="siteName"
+                  onChange={this.handleInputChangeR}>
+                  
+               {this.state.sitesList.map(site => (
+               <option value={site.historical_name} >{site.historical_name}</option>
+               ))}
+
+              {/* {console.log('select  ffff')} */}
+                </select>
+              </label>
+            
+              <label>
+                <span>Review</span>
+                <input type="text" name="review" placeholder="review" onChange={this.handleInputChangeR} />
+              </label>
+              
+              <button id="add">Add Item</button>
+            </form>
+          
+          </div>
+         
          {this.state.citiesList.map(city => (
           <ul>
             <li className="citiesContainer"
@@ -136,7 +190,6 @@ class City extends React.Component {
           {city.achistoricalPlaces.map(site => (
 
           //  console.log('inside return', site.reviews)
-         
           <If condition={site.cityName}>
           <Onesite
           keysite = {site._id}

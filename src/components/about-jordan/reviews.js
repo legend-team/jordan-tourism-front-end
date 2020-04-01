@@ -40,19 +40,7 @@ class Reviews extends React.Component {
       .catch((e) => typeof errorHandler === 'function' ? errorHandler(e) : console.error(e));
   };
 
-  addreview = (e) => {
 
-    e.preventDefault();
-    e.target.reset();
-
-    const _updateState = newreview =>
-      this.setState({
-        reviewsList: [...this.state.reviewsList, newreview],
-      });
-
-    this.callAPI(reviewsAPI, 'POST', this.state.review, _updateState);
-
-  };
 
   deletereview = id => {
 
@@ -113,7 +101,7 @@ if (review!==b){return false}   }
         <div className="reviewsContainer">
           <ul hist={this.props.historical_name}>
           
-            {console.log('props{site._id}', this.props.historical_name)}
+            {/* {console.log('props{site._id}', this.props.historical_name)} */}
             {this.state.reviewsList.map(review => (
               // console.log('{this.compare(review,this.props.historical_name)}',{this.compare(review,this.props.historical_name)})
                 <If condition= {this.compare(review.siteName,this.props.historical_name)}>
@@ -126,33 +114,7 @@ if (review!==b){return false}   }
            ))}
           </ul>
         </div>
-        <div>
-            {/* <h3>Add Item</h3> */}
-            {/* <Gallery/> */}
-            <form onSubmit={this.addreview}>
-              <label>
-                <span>Site Name</span>
-                <input
-                type='text'
-                  name="siteName"
-                  placeholder="Add The Site Name"
-                  onChange={this.handleInputChange}
-                />
-              </label>
-            
-              <label>
-                <span>Review</span>
-                <input type="text" name="review" placeholder="review" onChange={this.handleInputChange} />
-              </label>
-              {/* <label>
-               
-                <input type="hidden" name="review" placeholder="review" onChange={this.handleInputChange} value={} />
-              </label> */}
-              <button id="add">Add Item</button>
-            </form>
-          </div>
-
-      
+         
 
 
 
