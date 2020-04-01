@@ -14,6 +14,7 @@ class SignUpForm extends Component {
           hasAgreed: false
       };
       this.handleSubmit = this.handleSubmit.bind(this);
+      this.handleChange = this.handleChange.bind(this);
   }
 
   handleSubmit(e) {
@@ -24,6 +25,15 @@ class SignUpForm extends Component {
       // onClick={this.props.signedUp}
       this.props.signedUp();
   }
+  handleChange(e) {
+    let target = e.target;
+    let value = target.value;
+    let name = target.name;
+
+    this.setState({
+      [name]: value
+    });
+}
 
   render() {
       return (
@@ -34,13 +44,13 @@ class SignUpForm extends Component {
             <div className="c-auth__form">
               <form className="c-form" id="register" onSubmit={this.handleSubmit} >
                 <div className="c-form__group">*
-                  <input className="c-form-control" name="name" type="text" placeholder="Full Name" required="required" />
+                  <input className="c-form-control" name="name" type="text" placeholder="Full Name" required="required" value={this.state.name} onChange={this.handleChange}  />
                 </div>
                 <div className="c-form__group">*
-                  <input className="c-form-control" name="password" type="password" placeholder="Password" minLength="6" required="required" />
+                  <input className="c-form-control" name="password" type="password" placeholder="Password" minLength="6" required="required" value={this.state.password} onChange={this.handleChange}  />
                 </div>
                 <div className="c-form__group">
-                  <input className="c-form-control" name="email" type="email" placeholder="Email" />
+                  <input className="c-form-control" name="email" type="email" placeholder="Email" value={this.state.email} onChange={this.handleChange} />
                 </div>
                 <div className="c-form__action-group">
                   <button className="c-button c-button--block c-button--info" type="submit">Sign Up</button>

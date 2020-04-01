@@ -1,11 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState ,useContext } from 'react';
 import { If, Then, When } from '../if/if.js';
 import Modal from '../modal/modal.js';
 import { Link } from "react-router-dom";
 import './header.scss'
+import {LoginContext} from './../sign-in/context';
 
 const Header = props => {
-
+  const My_context = useContext(LoginContext)
   const [ show, setShow ] = useState(false);
   const [ logedIn, setlogedIn ] = useState(true);
 
@@ -19,7 +20,8 @@ const Header = props => {
   }
 
   function logOut() {
-    setlogedIn(!logedIn);
+    // setlogedIn(!logedIn);
+    My_context.logout()
   }
 
   return (
@@ -37,12 +39,12 @@ const Header = props => {
                             <Link to="/cities" className="c-nav__item" >Jordan Cities</Link>
                             <Link to="/sites" className="c-nav__item" >Places To Visit</Link>
                             {/* <Link to="/signin" onClick={() => headerToggelShow()} className="c-nav__item" >Login</Link> */}
-                            <If condition={logedIn}>
+                            <If condition={!My_context.loggedIn}>
                               <Then>
                                 <span className="c-nav__item" onClick={() => headerToggelShow()}>Login</span>
                               </Then>
                             </If>
-                            <If condition={!logedIn}>
+                            <If condition={My_context.loggedIn}>
                               <Then>
                                 <span className="c-nav__item" onClick={() => logOut()}>LogOut</span>
                               </Then>

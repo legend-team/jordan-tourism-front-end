@@ -2,7 +2,7 @@ import React from 'react'
 import jwt from 'jsonwebtoken';
 import cookies from 'react-cookies'
 
-const API = 'http://tourism-api-back-end.herokuapp.com'
+const API = 'http://jordan-explorers.herokuapp.com'
 
 
 export const LoginContext = React.createContext()
@@ -24,12 +24,13 @@ class LoginProvider extends React.Component{
     }
 
     login = async(username,password)=>{
+        console.log('my man ',username,password)
         let output = await fetch(`${API}/signin`,{
            method:'POST',
-           mode:'no-cors',
+           mode:'cors',
            cache:'no-cache',
            headers:new Headers({
-               'Authorization':`Basic ${btoa(`${username}:${password}`)}`,
+               'Authorization': `Basic ${btoa(`${username}:${password}`)}`,
                'Content-Type': 'application/json'
            }) 
         })
@@ -70,7 +71,7 @@ class LoginProvider extends React.Component{
     signUp = async(username,password,email_user)=>{
         let response = await fetch(`${API}/signup`,{
             method:'POST',
-            mode:'no-cors',
+            mode:'cors',
             cache:'no-cache',
             headers : new Headers({
                 'Content-Type': 'application/json'
