@@ -26,7 +26,7 @@ class LoginProvider extends React.Component{
     login = async(username,password)=>{
         let output = await fetch(`${API}/signin`,{
            method:'POST',
-           mode:'cors',
+           mode:'no-cors',
            cache:'no-cache',
            headers:new Headers({
                'Authorization':`Basic ${btoa(`${username}:${password}`)}`,
@@ -34,6 +34,7 @@ class LoginProvider extends React.Component{
            }) 
         })
         let token =await output.text()
+        console.log('hi token',token)
         this.valdiateToken(token)
     }
 
@@ -42,11 +43,13 @@ class LoginProvider extends React.Component{
             let user = jwt.verify(token,'ser123')
             this.setlogin(true,token,user)
         } catch  {
+            
             this.setlogin(false,null,{})
         }
     }
 
     setlogin = (loggedIn,token,user)=>{
+       
         cookies.save('auth',token)
         this.setState({token,loggedIn,user})
     }
@@ -59,6 +62,7 @@ class LoginProvider extends React.Component{
         const qs = new URLSearchParams(window.location.search)
         const cookiesToken = cookies.load('auth')
         const token  = qs.get('token') || cookiesToken || null
+        // console.log('hi token',token)
         // this.valdiateToken(`token`)
         this.valdiateToken(token)
     }
@@ -66,7 +70,7 @@ class LoginProvider extends React.Component{
     signUp = async(username,password,email_user)=>{
         let response = await fetch(`${API}/signup`,{
             method:'POST',
-            mode:'cors',
+            mode:'no-cors',
             cache:'no-cache',
             headers : new Headers({
                 'Content-Type': 'application/json'
