@@ -11,9 +11,9 @@ class SignUpForm extends Component {
           email: '',
           password: '',
           name: '',
-          hasAgreed: false
       };
       this.handleSubmit = this.handleSubmit.bind(this);
+      this.handleChange = this.handleChange.bind(this);
   }
 
   handleSubmit(e) {
@@ -25,6 +25,15 @@ class SignUpForm extends Component {
       this.props.signedUp();
   }
 
+  handleChange(e) {
+    let value = e.target.value;
+    let name = e.target.name;
+
+    this.setState({
+      [name] : value
+    });
+  }
+
   render() {
       return (
         <>
@@ -34,10 +43,10 @@ class SignUpForm extends Component {
             <div className="c-auth__form">
               <form className="c-form" id="register" onSubmit={this.handleSubmit} >
                 <div className="c-form__group">*
-                  <input className="c-form-control" name="name" type="text" placeholder="Full Name" required="required" />
+                  <input className="c-form-control" name="name" type="text" placeholder="Full Name" value={this.state.name} onChange={this.handleChange} required="required" />
                 </div>
                 <div className="c-form__group">*
-                  <input className="c-form-control" name="password" type="password" placeholder="Password" minLength="6" required="required" />
+                  <input className="c-form-control" name="password" type="password" placeholder="Password" minLength="6" value={this.state.password} onChange={this.handleChange} required="required" />
                 </div>
                 <div className="c-form__group">
                   <input className="c-form-control" name="email" type="email" placeholder="Email" />

@@ -58,7 +58,7 @@ function Home() {
                                     </div>
                                     <div className="c-card__frontside">
                                         <a className="c-card__inner" target="_blank"
-                                            href="http://tourism-api-back-end.herokuapp.com/sites/petra/5e7c93cf721c1500174d7272">
+                                            href="http://tourism-api-back-end.herokuapp.com/sites/maan/5e7c85c76427af0017f34ed5/petra/5e7c93cf721c1500174d7272">
                                             <div className="c-card__footer">
                                                 <div className="c-card__article-title">
                                                     <div className="c-card__subtitle"></div>
@@ -79,7 +79,7 @@ function Home() {
                                     </div>
                                     <div className="c-card__frontside">
                                         <a className="c-card__inner" target="_blank"
-                                            href="http://tourism-api-back-end.herokuapp.com/sites/aqaba%20aquarium/5e7c93a7721c1500174d726f">
+                                            href="http://tourism-api-back-end.herokuapp.com/sites/aqaba/5e7c85ba6427af0017f34ed4/aqaba%20aquarium/5e7c93a7721c1500174d726f">
                                             <div className="c-card__footer">
                                                 <div className="c-card__article-title">
                                                     <div className="c-card__subtitle"></div>
@@ -100,7 +100,7 @@ function Home() {
                                       </div>
                                     <div className="c-card__frontside">
                                         <a className="c-card__inner" target="_blank"
-                                            href="http://tourism-api-back-end.herokuapp.com/sites/Street%20of%20columns/5e7c92e6721c1500174d7263">
+                                            href="http://tourism-api-back-end.herokuapp.com/sites/jarash/5e7c858d6427af0017f34ed0/street%20of%20columns/5e7c92e6721c1500174d7263">
                                             <div className="c-card__footer">
                                                 <div className="c-card__article-title">
                                                     <div className="c-card__subtitle"></div>
@@ -203,7 +203,7 @@ function Home() {
                                         src="https://cache.marriott.com/marriottassets/marriott/AMMWI/ammwi-exterior-2067-hor-wide.jpg?interpolation=progressive-bilinear&downsize=1440px:*" />
                                 </div>
                                 <div className="c-card__frontside">
-                                    <a className="c-card__inner" href="/destinations/istanbul">
+                                    <a className="c-card__inner" target="_blank" href="https://tourism-api-back-end.herokuapp.com/sites/amman/5e7c85266427af0017f34ecb/amman citadel (jebel al-qala'a)/5e7c87096427af0017f34ed7">
                                         <div className="c-card__footer">
                                             <div className="c-card__article-title">
                                                 <div className="c-card__subtitle">Destinations</div>
@@ -224,7 +224,7 @@ function Home() {
                                         src="https://c8.alamy.com/comp/HMD801/street-scene-as-salt-jordan-HMD801.jpg" />
                                 </div>
                                 <div className="c-card__frontside">
-                                    <a className="c-card__inner" href="/destinations/trabzon">
+                                    <a className="c-card__inner" target="_blank" href="/destinations/trabzon">
                                         <div className="c-card__footer">
                                             <div className="c-card__article-title">
                                                 <div className="c-card__subtitle">Destinations</div>
@@ -245,7 +245,7 @@ function Home() {
                                         src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/66/Wadi_Rum_Desert%2C_Jordan.jpg/1200px-Wadi_Rum_Desert%2C_Jordan.jpg" />
                                 </div>
                                 <div className="c-card__frontside">
-                                    <a className="c-card__inner" href="/attractions/unesco-world-heritage-sites-in-turkey">
+                                    <a className="c-card__inner" target="_blank" href="/attractions/unesco-world-heritage-sites-in-turkey">
                                         <div className="c-card__footer">
                                             <div className="c-card__article-title">
                                                 <div className="c-card__subtitle">Destinations</div>
@@ -266,7 +266,7 @@ function Home() {
                                         src="https://pbs.twimg.com/media/CAYTptBUQAAgNH5.jpg" />
                                 </div>
                                 <div className="c-card__frontside">
-                                    <a className="c-card__inner" href="/attractions/cat/history">
+                                    <a className="c-card__inner" target="_blank" href="/attractions/cat/history">
                                         <div className="c-card__footer">
                                             <div className="c-card__article-title">
                                                 <div className="c-card__subtitle">Destinations</div>
@@ -289,7 +289,7 @@ function Home() {
                                                 src="https://johtt.com/media/djcatalog2/images/item/1/al-karak-castle_f.jpg" />
                                         </div>
                                         <div className="c-card__frontside">
-                                            <a className="c-card__inner" href="/attractions/cat/gastronomy">
+                                            <a className="c-card__inner" target="_blank" href="/attractions/cat/gastronomy">
                                               <div className="c-card__footer">
                                                 <div className="c-card__article-title">
                                                   <div className="c-card__subtitle">Destinations</div>
@@ -309,7 +309,7 @@ function Home() {
                                                 src="https://www.alaraby.co.uk/File/GetImageCustom/436f9512-5b52-4e4c-a8b0-5327b66805d8/640/350" />
                                         </div>
                                         <div className="c-card__frontside">
-                                            <a className="c-card__inner" href="/attractions/turkish-coffee">
+                                            <a className="c-card__inner" target="_blank" href="/attractions/turkish-coffee">
                                               <div className="c-card__footer">
                                                 <div className="c-card__article-title">
                                                   <div className="c-card__subtitle">Destinations</div>

@@ -1168,15 +1168,18 @@ figure {
 }
 
 .c-full-slider__main-row p{
-  background-color: rgba(190, 190, 190, 0.3);
+  // background-color: rgba(190, 190, 190, 0.3);
+  background-color: rgba(17, 31, 42, 0.6);
   border-radius: 10px;
-  width: 70%;
+  width: 75%;
   font-size: 40px;
-  font-weight: bold;
+  font-weight: bolder;
   font-family: 'Caveat', cursive;
-  color: #222;
+  color: #ddd;
+  line-height: 1.5;
   margin: auto 0;
-  padding: 40px 15px;
+  padding: 50px 20px;
+  letter-spacing: 2px;
 }
 
 // .c-full-slider__title {
@@ -2402,7 +2405,7 @@ span.c-nav__item{
 }
 /*******************************/
 .fa-instagram-square, .fa-facebook-square, .fa-twitter-square, .fa-youtube-square{
-  color: #333;
+  color: #111F2A;
   font-size: 42px;
 }
 

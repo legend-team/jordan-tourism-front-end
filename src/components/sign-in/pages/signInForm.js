@@ -12,15 +12,25 @@ class SignInForm extends Component {
           password: ''
       };
       this.handleSubmit = this.handleSubmit.bind(this);
+      this.handleChange = this.handleChange.bind(this);
   }
 
   handleSubmit(e) {
       e.preventDefault();
       this.context.login(this.state.username,this.state.password);        
       // e.target.reset();
-
+      console.log('user => ', this.state);
       // onClick={this.props.signedIn}
       this.props.signedIn();
+  }
+
+  handleChange(e) {
+    let value = e.target.value;
+    let name = e.target.name;
+
+    this.setState({
+      [name] : value
+    });
   }
 
   render() {
@@ -32,10 +42,10 @@ class SignInForm extends Component {
             <div className="c-auth__form">
               <form className="c-form" id="login" onSubmit={this.handleSubmit}>
                 <div className="c-form__group">*
-                  <input className="c-form-control" name="username" type="text" placeholder="Full Name" required="required" />
+                  <input className="c-form-control" name="username" type="text" placeholder="Full Name" value={this.state.username} onChange={this.handleChange} required="required" />
                 </div>
                 <div className="c-form__group">*
-                  <input className="c-form-control" name="password" type="password" placeholder="Password" required="required" />
+                  <input className="c-form-control" name="password" type="password" placeholder="Password" value={this.state.password} onChange={this.handleChange} required="required" />
                 </div>
                 <div className="c-form__action-group">
                   <button className="c-button c-button--block c-button--info" type="submit">Login</button>

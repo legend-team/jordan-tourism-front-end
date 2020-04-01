@@ -4,7 +4,7 @@
   "description": "Final Project of 401 advanced JavaScript",
   "main": "index.js",
   "scripts": {
-    "start": "PORT=3300 react-scripts start",
+    "start": "PORT=8000 react-scripts start",
     "build": "react-scripts build"
   },
   "repository": {

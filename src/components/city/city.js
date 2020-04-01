@@ -1,4 +1,4 @@
-import React from 'react';
+import React , { useState } from 'react';
 import { HashLink as Link } from 'react-router-hash-link';
 // import { Switch, Route, Link } from "react-router-dom";
 // import City from '../sities/sites.js'
@@ -11,20 +11,17 @@ import './cities.scss'
 // const citiesAPI = 'http://localhost:3000/cities';
 const citiesAPI = 'http://tourism-api-back-end.herokuapp.com/cities';
 
-class Cities extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      citiesList: [],
-      city: {},
-      showDetails: false,
-      details: {},
-    };
-  }
+function City (props) {
 
-  handleInputChange = e => {
-    this.setState({ city: { ...this.state.city, [e.target.name]: e.target.value } });
-  };
+ const myAPI = `${citiesAPI}/${props.link}`
+
+    console.log('props inside City => ',props);
+    console.log('myAPI inside City => ',myAPI);
+
+
+  // handleInputChange = e => {
+  //   this.setState({ city: { ...this.state.city, [e.target.name]: e.target.value } });
+  // };
 
   callAPI = (url, method = 'get', body, handler, errorHandler) => {
 
@@ -40,57 +37,57 @@ class Cities extends React.Component {
       .catch((e) => typeof errorHandler === 'function' ? errorHandler(e) : console.error(e));
   };
 
-  addcity = (e) => {
+  // addcity = (e) => {
 
-    e.preventDefault();
-    e.target.reset();
+  //   e.preventDefault();
+  //   e.target.reset();
 
-    const _updateState = newcity =>
-      this.setState({
-        citiesList: [...this.state.citiesList, newcity],
-      });
+  //   const _updateState = newcity =>
+  //     this.setState({
+  //       citiesList: [...this.state.citiesList, newcity],
+  //     });
 
-    this.callAPI(citiesAPI, 'POST', this.state.city, _updateState);
+  //   this.callAPI(citiesAPI, 'POST', this.state.city, _updateState);
 
-  };
+  // };
 
-  deletecity = id => {
+  // deletecity = id => {
 
-    const _updateState = (results) =>
-      this.setState({
-        citiesList: this.state.citiesList.filter(city => city._id !== id),
-      });
+  //   const _updateState = (results) =>
+  //     this.setState({
+  //       citiesList: this.state.citiesList.filter(city => city._id !== id),
+  //     });
 
-    this.callAPI(`${citiesAPI}/${id}`, 'DELETE', undefined, _updateState);
+  //   this.callAPI(`${citiesAPI}/${id}`, 'DELETE', undefined, _updateState);
 
-  };
+  // };
 
-  savecity = updatedcity => {
+  // savecity = updatedcity => {
 
-    const _updateState = (newcity) =>
-      this.setState({
-        citiesList: this.state.citiesList.map(city =>
-          city._id === newcity._id ? newcity : city,
-        ),
-      });
+  //   const _updateState = (newcity) =>
+  //     this.setState({
+  //       citiesList: this.state.citiesList.map(city =>
+  //         city._id === newcity._id ? newcity : city,
+  //       ),
+  //     });
 
-    this.callAPI(`${citiesAPI}/${updatedcity.id}`, 'PUT', updatedcity, _updateState);
+  //   this.callAPI(`${citiesAPI}/${updatedcity.id}`, 'PUT', updatedcity, _updateState);
 
-  };
+  // };
 
-  toggleComplete = id => {
-    let city = this.state.citiesList.filter(i => i._id === id)[0] || {};
-    if (city._id) {
-      city.complete = !city.complete;
-      this.savecity(city);
-    }
-  };
+  // toggleComplete = id => {
+  //   let city = this.state.citiesList.filter(i => i._id === id)[0] || {};
+  //   if (city._id) {
+  //     city.complete = !city.complete;
+  //     this.savecity(city);
+  //   }
+  // };
 
-  toggleDetails = id => {
-    let showDetails = !this.state.showDetails;
-    let details = this.state.citiesList.filter(city => city._id === id)[0] || {};
-    this.setState({ details, showDetails });
-  }
+  // toggleDetails = id => {
+  //   let showDetails = !this.state.showDetails;
+  //   let details = this.state.citiesList.filter(city => city._id === id)[0] || {};
+  //   this.setState({ details, showDetails });
+  // }
 
   getcitiescitys = () => {
     const _updateState = data => this.setState({ citiesList: data });
@@ -184,4 +181,4 @@ class Cities extends React.Component {
 }
 }
 
- export default Cities; 
+ export default City; 

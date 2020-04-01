@@ -9,22 +9,19 @@ import Modal from '../modal/modal.js';
 import './cities.scss'
 
 // const citiesAPI = 'http://localhost:3000/cities';
-const citiesAPI = 'http://tourism-api-back-end.herokuapp.com/cities';
+const citiesAPI = 'https://jordan-explorers.herokuapp.com/cities';
 
 class Cities extends React.Component {
+
   constructor(props) {
     super(props);
     this.state = {
       citiesList: [],
       city: {},
-      showDetails: false,
-      details: {},
+      // showDetails: false,
+      // details: {},
     };
   }
-
-  handleInputChange = e => {
-    this.setState({ city: { ...this.state.city, [e.target.name]: e.target.value } });
-  };
 
   callAPI = (url, method = 'get', body, handler, errorHandler) => {
 
@@ -38,59 +35,8 @@ class Cities extends React.Component {
       .then(response => response.json())
       .then(data => typeof handler === 'function' ? handler(data) : null)
       .catch((e) => typeof errorHandler === 'function' ? errorHandler(e) : console.error(e));
+      
   };
-
-  addcity = (e) => {
-
-    e.preventDefault();
-    e.target.reset();
-
-    const _updateState = newcity =>
-      this.setState({
-        citiesList: [...this.state.citiesList, newcity],
-      });
-
-    this.callAPI(citiesAPI, 'POST', this.state.city, _updateState);
-
-  };
-
-  deletecity = id => {
-
-    const _updateState = (results) =>
-      this.setState({
-        citiesList: this.state.citiesList.filter(city => city._id !== id),
-      });
-
-    this.callAPI(`${citiesAPI}/${id}`, 'DELETE', undefined, _updateState);
-
-  };
-
-  savecity = updatedcity => {
-
-    const _updateState = (newcity) =>
-      this.setState({
-        citiesList: this.state.citiesList.map(city =>
-          city._id === newcity._id ? newcity : city,
-        ),
-      });
-
-    this.callAPI(`${citiesAPI}/${updatedcity.id}`, 'PUT', updatedcity, _updateState);
-
-  };
-
-  toggleComplete = id => {
-    let city = this.state.citiesList.filter(i => i._id === id)[0] || {};
-    if (city._id) {
-      city.complete = !city.complete;
-      this.savecity(city);
-    }
-  };
-
-  toggleDetails = id => {
-    let showDetails = !this.state.showDetails;
-    let details = this.state.citiesList.filter(city => city._id === id)[0] || {};
-    this.setState({ details, showDetails });
-  }
 
   getcitiescitys = () => {
     const _updateState = data => this.setState({ citiesList: data });
@@ -100,7 +46,69 @@ class Cities extends React.Component {
   componentDidMount = () => {
     this.getcitiescitys();
   }
-  //href={`${citiesAPI}/${city.name}/${city._id}`}
+
+  mylink = (link) => {
+    console.log('link from cities => ', link);
+    // this.props.
+  }
+
+  // handleInputChange = e => {
+  //   this.setState({ city: { ...this.state.city, [e.target.name]: e.target.value } });
+  // };
+
+
+  // addcity = (e) => {
+
+  //   e.preventDefault();
+  //   e.target.reset();
+
+  //   const _updateState = newcity =>
+  //     this.setState({
+  //       citiesList: [...this.state.citiesList, newcity],
+  //     });
+
+  //   this.callAPI(citiesAPI, 'POST', this.state.city, _updateState);
+
+  // };
+
+  // deletecity = id => {
+
+  //   const _updateState = (results) =>
+  //     this.setState({
+  //       citiesList: this.state.citiesList.filter(city => city._id !== id),
+  //     });
+
+  //   this.callAPI(`${citiesAPI}/${id}`, 'DELETE', undefined, _updateState);
+
+  // };
+
+  // savecity = updatedcity => {
+
+  //   const _updateState = (newcity) =>
+  //     this.setState({
+  //       citiesList: this.state.citiesList.map(city =>
+  //         city._id === newcity._id ? newcity : city,
+  //       ),
+  //     });
+
+  //   this.callAPI(`${citiesAPI}/${updatedcity.id}`, 'PUT', updatedcity, _updateState);
+
+  // };
+
+  // toggleComplete = id => {
+  //   let city = this.state.citiesList.filter(i => i._id === id)[0] || {};
+  //   if (city._id) {
+  //     city.complete = !city.complete;
+  //     this.savecity(city);
+  //   }
+  // };
+
+  // toggleDetails = id => {
+  //   let showDetails = !this.state.showDetails;
+  //   let details = this.state.citiesList.filter(city => city._id === id)[0] || {};
+  //   this.setState({ details, showDetails });
+  // }
+
   render() {
     return (
       <>
@@ -157,6 +165,7 @@ class Cities extends React.Component {
                                   id = {city._id}
                                   cityName = {city.name}
                                   image_url = {city.image_url}
+                                  city = {this.mylink}
                                 />)
                               )}
                             </div>

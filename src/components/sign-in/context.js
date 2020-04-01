@@ -2,7 +2,7 @@ import React from 'react'
 import jwt from 'jsonwebtoken';
 import cookies from 'react-cookies'
 
-const API = 'http://tourism-api-back-end.herokuapp.com'
+const API = 'https://jordan-explorers.herokuapp.com'
 
 
 export const LoginContext = React.createContext()
