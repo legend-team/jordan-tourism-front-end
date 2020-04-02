@@ -9,6 +9,7 @@ import Sites from '../sities/sites.js';
 import ContactUs from '../contact-us/contact-us';
 import AboutUs from '../about-us/about-us.js';
 import Cities from '../cities/cities.js';
+import City from '../city/city.js';
 import Signin from "../sign-in/sign.js";
 import {LoginContext} from './../sign-in/context.js' 
 
@@ -35,9 +36,9 @@ function Main(){
           <Signin/>
         </If>
         </Route>
-        {/* <Route path=`/cities/${link}`>
+        <Route path='/city'>
           <City />
-        </Route> */}
+        </Route>
         <Route path="/gallary">
           <Gallary />
         </Route>

@@ -1,11 +1,13 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { HashLink as Link } from 'react-router-hash-link';
+import { CityContext } from '../context/context.js'
 
 // const cityAPI = `http://tourism-api-back-end.herokuapp.com/cities/${props.cityName.toLowerCase()}/${props.id}`;
 
 function Onecity (props) {
-  
+  const My_context = useContext(CityContext)
   async function bringData(){
+
 
     // const cityAPI = `http://tourism-api-back-end.herokuapp.com/cities/${props.cityName.toLowerCase()}/${props.id}`;
 
@@ -16,11 +18,16 @@ function Onecity (props) {
     //   headers: { 'Content-Type': 'application/json' },
     // })
     // let data = response.json();
+    // console.log('props inside onecity => ',props);
     let link = `${props.cityName.toLowerCase()}/${props.id}`
-    console.log('link => ',link);
-    props.city(link);    
+    // console.log('link => ',link);
+    // props.city(link); 
+    console.log('link => ,',link);
+    My_context.cityLink(link);
+    // My_context.link = 'jlhsdllkdflkakjj';
+    // console.log( My_context)
   
-};
+  };
   
 
   return (
@@ -30,9 +37,9 @@ function Onecity (props) {
               <div className="c-card__backside">
                 <img className="c-card__visual swiper-lazy" src={props.image_url} />
               </div>
-              <div className="c-card__frontside" onClick={() => bringData()}>
-                  {/* <a className="c-card__inner" onClick={() => bringData()} href={`/cities/${props.cityName.toLowerCase()}/${props.id}`} > */}
-                  <a className="c-card__inner"  >
+              <div className="c-card__frontside" >
+                  <a className="c-card__inner" onClick={() => bringData()}  href="/city">
+                  {/* <a className="c-card__inner" onClick={() => bringData()}> */}
                       <div className="c-card__footer">
                           <div className="c-card__article-title">
                               <div className="c-card__subtitle"></div>

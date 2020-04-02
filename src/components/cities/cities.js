@@ -3,6 +3,7 @@ import { HashLink as Link } from 'react-router-hash-link';
 // import { Switch, Route, Link } from "react-router-dom";
 // import City from '../sities/sites.js'
 import Onecity from '../Onecity/Onecity.js'
+import { CityContext, LoginProvider } from '../context/context.js'
 
 import { When } from '../if/if.js';
 import Modal from '../modal/modal.js';
@@ -12,6 +13,8 @@ import './cities.scss'
 const citiesAPI = 'https://jordan-explorers.herokuapp.com/cities';
 
 class Cities extends React.Component {
+
+  static contextType = CityContext;
 
   constructor(props) {
     super(props);
@@ -49,7 +52,8 @@ class Cities extends React.Component {
 
   mylink = (link) => {
     console.log('link from cities => ', link);
-    // this.props.
+    // this.props.jjj(link)
+    this.context.cityLink(link)
   }
 
   // handleInputChange = e => {
